@@ -70,12 +70,13 @@ if parq.exists():
     faixas["saldo"] = faixas.lula - faixas.flavio
 
     tot = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio,
-                      MIN(fech_brt) ini, MAX(fech_brt) fim
+                      MIN(fech_brt) FILTER (WHERE fech_brt >= '2026-10-25 17:00') ini,
+                      MAX(fech_brt) fim
                FROM u WHERE uf <> 'ZZ'""").iloc[0]
     tarde = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
-                 FROM u WHERE uf <> 'ZZ' AND fech_brt > '2026-10-25 17:05:00'""").iloc[0]
+                 FROM u WHERE uf <> 'ZZ' AND fech_brt >= '2026-10-25 17:05:00'""").iloc[0]
     ct = q("""SELECT CASE WHEN rec_brt < '2026-10-25 20:23' THEN 'A' ELSE 'B' END chegada,
-                     CASE WHEN fech_brt > '2026-10-25 17:05:00' THEN 'tarde' ELSE 'hora' END fech,
+                     CASE WHEN fech_brt >= '2026-10-25 17:05:00' THEN 'tarde' ELSE 'hora' END fech,
                      COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
               FROM u WHERE uf <> 'ZZ' GROUP BY 1, 2 ORDER BY 1, 2""")
     ct["lula_pct"] = ct.lula / ct.votos * 100
