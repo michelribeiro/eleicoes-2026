@@ -3,26 +3,30 @@
 Dados abertos do TSE (votação por seção eleitoral, Eleições Gerais 2026), baixados,
 descompactados, consolidados e transformados em gráficos.
 
-**Ver online:** https://michelribeiro.github.io/eleicoes-2026/
+**Ver online:** https://michelribeiro.github.io/eleicoes-2026/ · segunda página: [urnas.html](https://michelribeiro.github.io/eleicoes-2026/urnas.html)
 **Local:** abra [`index.html`](index.html) no navegador (os gráficos já estão prontos em `graficos/`).
 
 ## O que tem aqui
 
 ```
 ELEICOES/
-├── index.html                  relatório com todos os gráficos, tabela e método
+├── index.html                  votos por região: 13 gráficos, tabela por UF e método
+├── urnas.html                  quando cada urna fechou: gráfico 14 e tabelas
 ├── zips/                       27 arquivos originais do TSE (votacao_secao_2026_UF.zip) — 2,6 GB
 ├── csv/                        27 CSVs descompactados (um por UF) — 18 GB
 ├── graficos/                   12 gráficos em PNG (200 dpi, 2200 px de largura)
 ├── dados/
 │   ├── agregado.parquet        tabela consolidada (UF×cargo, município×cargo, candidato)
 │   ├── apuracao_presidente_2026.csv   apuração do 2º turno presidencial, minuto a minuto
+│   ├── urnas_fechamento_2026.parquet  1 linha por urna: fechamento, chegada ao TSE e votos
+│   ├── urnas_series_fechamento.csv    série cumulativa por horário de fechamento
 │   ├── resumo.json             números usados no relatório
 │   ├── votos_por_uf_e_cargo.csv
 │   ├── votos_por_municipio.csv
 │   ├── votos_por_candidato.csv
 │   └── br_ufs.geojson          malha das UFs (IBGE), usada nos mapas
-├── apuracao.py                 reconstrói a apuração presidencial (hora de cada urna) + gráfico
+├── apuracao.py                 apuração pela hora de CHEGADA ao TSE + gráfico 13
+├── urnas.py                    apuração pela hora de FECHAMENTO da urna + gráfico 14
 ├── analise.py                  CSVs → dados/agregado.parquet
 ├── graficos.py                 agregado → graficos/*.png + dados/resumo.json
 ├── relatorio.py                resumo.json → index.html
@@ -46,7 +50,8 @@ ELEICOES/
 | `10_legendas.png` | Votos de legenda (sem nome) por partido |
 | `11_municipios.png` | 15 maiores colégios eleitorais |
 | `12_regioes.png` | Peso e aproveitamento do voto por região |
-| `13_apuracao_presidente.png` | **A virada do 2º turno presidencial, urna por urna** (17h → 23h21) |
+| `13_apuracao_presidente.png` | **A virada do 2º turno presidencial, urna por urna** (chegada ao TSE, 17h → 23h21) |
+| `14_urnas_fechamento.png` | **Quem estava na frente pelo horário de FECHAMENTO da urna** (17h → 23h04) |
 
 ## Números-chave
 
@@ -57,6 +62,9 @@ ELEICOES/
 - **2º turno presidencial**: Lula 51,79% (64.256.232) × Flávio 48,21% (59.826.041) — margem de 3,57 p.p.
   - Flávio liderou das **19h44** (13,9% das urnas) às **20h23** (47,3%); Lula virou e não perdeu mais
   - 90% das urnas apuradas às 21h01; a última urna chegou às 23h21
+- **Urnas que fecharam depois das 17h05** (registraram voto depois do horário legal): 57.409 urnas,
+  14.983.173 votos, **56,2% para Lula** — saldo de +1.860.855, ou 42% da margem final
+  - No 1º minuto de apuração Flávio liderava (50,99% × 49,01%); Lula virou às 17h01 e não perdeu mais
 
 ## Como refazer
 
@@ -66,7 +74,8 @@ cd ELEICOES
 ./.venv/bin/python graficos.py    # gera os PNGs e o resumo.json
 ./.venv/bin/python relatorio.py   # monta o index.html
 ./.venv/bin/python exportar.py    # (opcional) CSVs de apoio
-./.venv/bin/python apuracao.py    # (opcional) apuração minuto a minuto + gráfico 13
+./.venv/bin/python apuracao.py    # apuração pela chegada ao TSE + gráfico 13
+./.venv/bin/python urnas.py       # apuração pelo fechamento da urna + gráfico 14
 ```
 
 `apuracao.py` usa outra fonte: além da votação por seção (arquivo `votacao_secao_2026_BR.zip`),
@@ -77,7 +86,14 @@ Os ~2,9 GB ficam em `.cache/` (fora do git) e podem ser apagados depois. Para n�
 
 ```bash
 TSE_CACHE=/caminho/do/cache ./.venv/bin/python apuracao.py --forcar
+TSE_CACHE=/caminho/do/cache ./.venv/bin/python urnas.py --forcar
 ```
+
+`urnas.py` usa o dataset **"Resultados — 2026 — Boletim de Urna"** (28 arquivos `bweb_2t_UF_*.zip`),
+que traz `DT_ENCERRAMENTO`, `DT_ABERTURA` e `DT_BU_RECEBIDO` de cada urna — é o que permite medir
+"voto depois das 17h" (a urna que fechou com fila). Os horários são locais; o fuso de cada município
+é inferido do horário legal de fechamento. O CSV extraído (~1 GB) é apagado no fim; ficam só os zips e
+o parquet de 1 linha por urna.
 
 Para baixar de novo, os arquivos estão em
 `https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2026_<UF>.zip`

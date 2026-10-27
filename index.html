@@ -26,7 +26,27 @@
   }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 
-  header.hero { padding: 88px 0 56px; border-bottom: 1px solid var(--hair); }
+  nav.topo {
+    border-bottom: 1px solid var(--hair); background: var(--paper);
+    position: sticky; top: 0; z-index: 10;
+  }
+  nav.topo .wrap {
+    display: flex; align-items: center; gap: 26px;
+    padding-top: 14px; padding-bottom: 14px;
+  }
+  nav.topo .marca {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-soft); margin-right: auto;
+  }
+  nav.topo a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; text-decoration: none; color: var(--ink-soft);
+    padding-bottom: 3px; border-bottom: 1px solid transparent;
+  }
+  nav.topo a:hover { color: var(--ink); }
+  nav.topo a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--rust); }
+
+  header.hero { padding: 80px 0 56px; border-bottom: 1px solid var(--hair); }
   .eyebrow {
     font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em;
     text-transform: uppercase; color: var(--rust); margin: 0 0 22px;
@@ -43,10 +63,7 @@
   }
   .meta span::before { content: "◦ "; color: var(--hair); }
 
-  .cards {
-    display: flex; flex-wrap: wrap; border-block: 1px solid var(--hair);
-    margin: 0; padding: 0;
-  }
+  .cards { display: flex; flex-wrap: wrap; border-block: 1px solid var(--hair); margin: 0; padding: 0; }
   .card-stat {
     flex: 1 1 190px; background: var(--paper); padding: 32px 24px 30px;
     border-right: 1px solid var(--hair);
@@ -84,12 +101,13 @@
   thead th {
     text-align: left; font-family: var(--mono); font-size: 10.5px; font-weight: 500;
     letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft);
-    padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink); cursor: pointer;
+    padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink);
     white-space: nowrap;
   }
   thead th.num, td.num { text-align: right; }
   tbody td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hair); }
   tbody tr:hover td { background: var(--paper-2); }
+  tbody tr.destaque td { background: #F7EDE7; }
   td.num { font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
   td.dim { color: #9AA1AB; font-size: 13px; }
   .uf { font-family: var(--mono); font-weight: 500; font-size: 13px; }
@@ -99,6 +117,23 @@
     vertical-align: middle;
   }
 
+  .proximo {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px;
+    border: 1px solid var(--hair); border-radius: 3px; padding: 28px 30px;
+    margin: 10px 0 60px; text-decoration: none; color: inherit; background: var(--paper);
+  }
+  .proximo:hover { background: var(--paper-2); }
+  .proximo span {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--rust);
+  }
+  .proximo strong {
+    display: block; font-family: var(--serif); font-size: 24px; font-weight: 600;
+    margin-top: 6px; letter-spacing: -.01em;
+  }
+  .proximo em { color: var(--ink-soft); font-style: normal; font-size: 14.5px; }
+  .proximo b { font-size: 26px; color: var(--rust); }
+
   .metodo { padding: 60px 0 90px; border-top: 1px solid var(--hair); }
   .metodo h2 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 0 0 14px; }
   .metodo ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 15px; }
@@ -107,17 +142,19 @@
     font-family: var(--mono); font-size: 12.5px; background: var(--paper-2);
     padding: 1px 6px; border-radius: 3px; color: var(--ink);
   }
-  footer {
-    padding: 26px 0 60px; color: #9AA1AB; font-family: var(--mono); font-size: 11.5px;
-  }
+  footer { padding: 26px 0 60px; color: #9AA1AB; font-family: var(--mono); font-size: 11.5px; }
   @media (max-width: 720px) {
     figcaption { grid-template-columns: 1fr; }
-    header.hero { padding-top: 56px; }
+    header.hero { padding-top: 50px; }
     section.card { padding: 40px 0; }
+    nav.topo .marca { display: none; }
   }
 </style>
 </head>
 <body>
+<nav class="topo"><div class="wrap">
+      <span class="marca">Eleições 2026 · TSE</span><a href="index.html" aria-current="page">Votos por região</a><a href="urnas.html">Quando a urna fechou</a>
+  </div></nav>
 
 <header class="hero">
   <div class="wrap">
@@ -140,9 +177,7 @@
 </header>
 
 <div class="wrap">
-  <div class="cards">
-    <div class="card-stat"><b>623.842.425</b><small>votos depositados</small><small class="dim">1º turno, todos os cargos</small></div><div class="card-stat"><b>51,79%</b><small>Lula no 2º turno</small><small class="dim">Flávio 48,21% · margem 3,57 p.p.</small></div><div class="card-stat"><b>112.197.244</b><small>eleitores válidos</small><small class="dim">votos válidos para governador</small></div><div class="card-stat"><b>12,3%</b><small>brancos + nulos</small><small class="dim">37,1 mi + 39,4 mi</small></div><div class="card-stat"><b>6</b><small>estados com 2º turno</small><small class="dim">ES · RN · AM · DF · TO · AC</small></div>
-  </div>
+  <div class="cards"><div class="card-stat"><b>623.842.425</b><small>votos depositados</small><small class="dim">1º turno, todos os cargos</small></div><div class="card-stat"><b>51,79%</b><small>Lula no 2º turno</small><small class="dim">Flávio 48,21% · margem 3,57 p.p.</small></div><div class="card-stat"><b>112.197.244</b><small>eleitores válidos</small><small class="dim">votos válidos para governador</small></div><div class="card-stat"><b>12,3%</b><small>brancos + nulos</small><small class="dim">37,1 mi + 39,4 mi</small></div><div class="card-stat"><b>6</b><small>estados com 2º turno</small><small class="dim">ES · RN · AM · DF · TO · AC</small></div></div>
 </div>
 
 <main class="wrap">
@@ -272,10 +307,19 @@
       <img src="graficos/13_apuracao_presidente.png" alt="A apuração, urna por urna" loading="lazy">
       <figcaption>
         <h2>A apuração, urna por urna</h2>
-        <p>Reconstrução minuto a minuto do 2º turno presidencial: Flávio liderou entre as 19:44 e as 20:23, quando 14% a 47% das urnas já haviam sido apuradas. Dali em diante Lula abriu vantagem e fechou em 51,79% × 48,21% — margem de 3,57 pontos, com 124.082.273 votos válidos.</p>
+        <p>Reconstrução minuto a minuto do 2º turno presidencial pela hora em que cada arquivo CHEGOU ao TSE: Flávio liderou entre as 19:44 e as 20:23, quando 14% a 47% das urnas já haviam sido apuradas. Dali em diante Lula abriu vantagem e fechou em 51,79% × 48,21% — margem de 3,57 pontos, com 124.082.273 votos válidos.</p>
       </figcaption>
     </figure>
   </section>
+
+  <a class="proximo" href="urnas.html">
+    <div>
+      <span>próxima página · boletim de urna</span>
+      <strong>Quando cada urna fechou</strong>
+      <em>Quem estava na frente e atrás conforme as urnas com fila — as que registraram voto depois das 17h — vão entrando na conta.</em>
+    </div>
+    <b>&rarr;</b>
+  </a>
 
   <section class="tabela">
     <h2>Os 27 estados, lado a lado</h2>
@@ -534,7 +578,7 @@
       <li>Sem dados de abstenção nem de comparecimento (essas bases vêm em outro conjunto do TSE).</li>
     </ul>
     <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
-      gerado em 27/10/2026 17:16 · <code>analise.py</code> → <code>graficos.py</code> → <code>relatorio.py</code>
+      gerado em 27/10/2026 17:38 · <code>analise.py</code> → <code>graficos.py</code> → <code>relatorio.py</code>
     </p>
   </section>
 </main>
@@ -552,23 +596,22 @@
   const linhas = [...corpo.rows];
   const num = (s) => parseFloat(s.replace(/\./g, '').replace(',', '.')) || 0;
   let dir = {};
+  linhas.forEach((tr) => {
+    [...tr.cells].forEach((td, i) => {
+      if (i >= 2) td.dataset.v = String(num(td.textContent));
+    });
+  });
   tab.tHead.addEventListener('click', (e) => {
     const th = e.target.closest('th'); if (!th) return;
     const col = +th.dataset.col;
     dir[col] = !dir[col];
-    const ordem = [...linhas].sort((a, b) => {
+    [...linhas].sort((a, b) => {
       const ca = a.cells[col].dataset.v ?? a.cells[col].textContent.trim();
       const cb = b.cells[col].dataset.v ?? b.cells[col].textContent.trim();
       const va = col >= 2 ? num(ca) : ca;
       const vb = col >= 2 ? num(cb) : cb;
       return (va < vb ? -1 : va > vb ? 1 : 0) * (dir[col] ? 1 : -1);
-    });
-    ordem.forEach((tr) => corpo.appendChild(tr));
-  });
-  linhas.forEach((tr) => {
-    [...tr.cells].forEach((td, i) => {
-      if (i >= 2) td.dataset.v = String(num(td.textContent));
-    });
+    }).forEach((tr) => corpo.appendChild(tr));
   });
 })();
 </script>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eleições 2026 · quando cada urna fechou</title>
+<style>
+  :root {
+    --paper: #FAF7F1;
+    --paper-2: #F4EFE4;
+    --ink: #1A2129;
+    --ink-soft: #5D6673;
+    --hair: #E2D9CA;
+    --rust: #C2543D;
+    --teal: #2F6F6B;
+    --indigo: #4A5C82;
+    --serif: "Iowan Old Style", "Palatino", Georgia, serif;
+    --sans: "Avenir Next", "Helvetica Neue", -apple-system, system-ui, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  nav.topo {
+    border-bottom: 1px solid var(--hair); background: var(--paper);
+    position: sticky; top: 0; z-index: 10;
+  }
+  nav.topo .wrap {
+    display: flex; align-items: center; gap: 26px;
+    padding-top: 14px; padding-bottom: 14px;
+  }
+  nav.topo .marca {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-soft); margin-right: auto;
+  }
+  nav.topo a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em;
+    text-transform: uppercase; text-decoration: none; color: var(--ink-soft);
+    padding-bottom: 3px; border-bottom: 1px solid transparent;
+  }
+  nav.topo a:hover { color: var(--ink); }
+  nav.topo a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--rust); }
+
+  header.hero { padding: 80px 0 56px; border-bottom: 1px solid var(--hair); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--rust); margin: 0 0 22px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(38px, 6.2vw, 68px);
+    line-height: 1.02; letter-spacing: -.02em; margin: 0 0 22px; max-width: 20ch;
+  }
+  h1 em { font-style: italic; color: var(--rust); }
+  .lead { max-width: 62ch; color: var(--ink-soft); font-size: 18.5px; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 34px;
+    font-family: var(--mono); font-size: 12px; color: var(--ink-soft);
+  }
+  .meta span::before { content: "◦ "; color: var(--hair); }
+
+  .cards { display: flex; flex-wrap: wrap; border-block: 1px solid var(--hair); margin: 0; padding: 0; }
+  .card-stat {
+    flex: 1 1 190px; background: var(--paper); padding: 32px 24px 30px;
+    border-right: 1px solid var(--hair);
+  }
+  .card-stat:last-child { border-right: none; }
+  .card-stat b {
+    display: block; font-family: var(--mono); font-size: 27px; font-weight: 500;
+    letter-spacing: -.03em; color: var(--ink);
+  }
+  .card-stat small { display: block; color: var(--ink-soft); font-size: 13.5px; margin-top: 6px; }
+  .card-stat small.dim { color: #9AA1AB; font-family: var(--mono); font-size: 11.5px; }
+
+  main { padding: 18px 0 40px; }
+  section.card { padding: 54px 0; border-bottom: 1px solid var(--hair); }
+  section.card:last-child { border-bottom: none; }
+  figure { margin: 0; }
+  figure img {
+    width: 100%; height: auto; display: block; border-radius: 3px;
+    border: 1px solid var(--hair); background: #fff;
+  }
+  figcaption { display: grid; grid-template-columns: 240px 1fr; gap: 12px 44px; margin-top: 26px; }
+  figcaption h2 {
+    font-family: var(--serif); font-size: 21px; font-weight: 600; margin: 0;
+    letter-spacing: -.01em;
+  }
+  figcaption p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 62ch; }
+
+  section.tabela { padding: 60px 0 20px; }
+  .tabela h2 {
+    font-family: var(--serif); font-size: 30px; font-weight: 600; margin: 0 0 8px;
+    letter-spacing: -.015em;
+  }
+  .tabela p.sub { color: var(--ink-soft); margin: 0 0 30px; font-size: 15.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th {
+    text-align: left; font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft);
+    padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink);
+    white-space: nowrap;
+  }
+  thead th.num, td.num { text-align: right; }
+  tbody td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hair); }
+  tbody tr:hover td { background: var(--paper-2); }
+  tbody tr.destaque td { background: #F7EDE7; }
+  td.num { font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
+  td.dim { color: #9AA1AB; font-size: 13px; }
+  .uf { font-family: var(--mono); font-weight: 500; font-size: 13px; }
+  .barra {
+    display: inline-block; height: 6px; width: var(--w); max-width: 60px;
+    background: var(--rust); opacity: .55; border-radius: 1px; margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .proximo {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px;
+    border: 1px solid var(--hair); border-radius: 3px; padding: 28px 30px;
+    margin: 10px 0 60px; text-decoration: none; color: inherit; background: var(--paper);
+  }
+  .proximo:hover { background: var(--paper-2); }
+  .proximo span {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--rust);
+  }
+  .proximo strong {
+    display: block; font-family: var(--serif); font-size: 24px; font-weight: 600;
+    margin-top: 6px; letter-spacing: -.01em;
+  }
+  .proximo em { color: var(--ink-soft); font-style: normal; font-size: 14.5px; }
+  .proximo b { font-size: 26px; color: var(--rust); }
+
+  .metodo { padding: 60px 0 90px; border-top: 1px solid var(--hair); }
+  .metodo h2 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 0 0 14px; }
+  .metodo ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 15px; }
+  .metodo li { margin-bottom: 7px; }
+  .metodo code {
+    font-family: var(--mono); font-size: 12.5px; background: var(--paper-2);
+    padding: 1px 6px; border-radius: 3px; color: var(--ink);
+  }
+  footer { padding: 26px 0 60px; color: #9AA1AB; font-family: var(--mono); font-size: 11.5px; }
+  @media (max-width: 720px) {
+    figcaption { grid-template-columns: 1fr; }
+    header.hero { padding-top: 50px; }
+    section.card { padding: 40px 0; }
+    nav.topo .marca { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav class="topo"><div class="wrap">
+      <span class="marca">Eleições 2026 · TSE</span><a href="index.html">Votos por região</a><a href="urnas.html" aria-current="page">Quando a urna fechou</a>
+  </div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Boletim de Urna · DT_ENCERRAMENTO</p>
+    <h1>Quando cada urna <em>fechou</em></h1>
+    <p class="lead">
+      O TSE não registra a hora de cada voto — voto é sigiloso. O que existe é a hora em que cada urna
+      <strong>fechou</strong>, no Boletim de Urna. É o mais perto de "voto depois das 17h": só urna que
+      fechou com fila recebeu voto depois do horário legal. Ordenando as 497.897 urnas
+      por esse horário, dá para ver quem estava na frente a cada minuto — e quando a eleição virou.
+    </p>
+    <div class="meta">
+      <span>2º turno · 25/10/2026</span>
+      <span>497.897 urnas</span>
+      <span>123.710.622 votos válidos</span>
+      <span>das 16:52 às 23:04 (Brasília)</span>
+      <span>fonte: Boletim de Urna</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="cards"><div class="card-stat"><b>57.051</b><small>urnas fecharam depois das 17h05</small><small class="dim">11,5% das 497.897 urnas</small></div><div class="card-stat"><b>14.893.905</b><small>votos válidos nessas urnas</small><small class="dim">12,0% do total apurado</small></div><div class="card-stat"><b>56,2%</b><small>foi para Lula</small><small class="dim">Flávio 43,8%</small></div><div class="card-stat"><b>+1.848.897</b><small>de saldo para Lula</small><small class="dim">42% da margem final</small></div></div>
+</div>
+
+<main class="wrap">
+  <section class="card" id="grafico">
+    <figure>
+      <img src="graficos/14_urnas_fechamento.png" alt="Apuração por horário de fechamento da urna">
+      <figcaption>
+        <h2>Quem estava na frente, urna por urna</h2>
+        <p>
+          À esquerda, a apuração inteira: as urnas entram na conta pelo horário de fechamento, das 17h
+          às 23:04. À direita, o zoom dos primeiros seis minutos, onde 96% das urnas fecham.
+          No primeiro minuto Flávio liderava com 50,99% (as urnas que fecham mais rápido são as menores,
+          do Sul e do Sudeste); às 17h01 Lula passou à frente com 50,20% e a partir dali a diferença só
+          cresceu, até 51,79% × 48,21%. Abaixo, o ritmo: 89% das urnas já tinham fechado às 17h04.
+        </p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="tabela">
+    <h2>As urnas por horário de fechamento</h2>
+    <p class="sub">
+      Cada linha é um grupo de urnas que fechou naquele intervalo, com os votos que estavam dentro.
+      As linhas destacadas são as que registraram voto depois das 17h05 — 57 mil urnas, 12% dos votos.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Fechou</th>
+          <th class="num">Urnas</th>
+          <th class="num">% das urnas</th>
+          <th class="num">Votos válidos</th>
+          <th class="num">Lula</th>
+          <th class="num">Saldo Lula</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><span class="uf">antes das 17h</span></td>
+        <td class="num">3</td>
+        <td class="num">0,0%</td>
+        <td class="num">557</td>
+        <td class="num">82,9%</td>
+        <td class="num">+367</td>
+      </tr>
+      <tr>
+        <td><span class="uf">17:00:00–17:00:29</span></td>
+        <td class="num">17.758</td>
+        <td class="num">3,6%</td>
+        <td class="num">4.395.784</td>
+        <td class="num">46,5%</td>
+        <td class="num">−310.430</td>
+      </tr>
+      <tr>
+        <td><span class="uf">17:00:30–17:00:59</span></td>
+        <td class="num">107.876</td>
+        <td class="num">21,7%</td>
+        <td class="num">26.216.036</td>
+        <td class="num">49,4%</td>
+        <td class="num">−295.240</td>
+      </tr>
+      <tr>
+        <td><span class="uf">17:01–17:04</span></td>
+        <td class="num">314.851</td>
+        <td class="num">63,2%</td>
+        <td class="num">78.115.072</td>
+        <td class="num">52,0%</td>
+        <td class="num">+3.145.982</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">17:05–17:14</span></td>
+        <td class="num">48.343</td>
+        <td class="num">9,7%</td>
+        <td class="num">12.480.005</td>
+        <td class="num">56,3%</td>
+        <td class="num">+1.574.539</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">17:15–17:29</span></td>
+        <td class="num">1.482</td>
+        <td class="num">0,3%</td>
+        <td class="num">378.559</td>
+        <td class="num">58,2%</td>
+        <td class="num">+62.361</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">17:30–17:59</span></td>
+        <td class="num">526</td>
+        <td class="num">0,1%</td>
+        <td class="num">135.214</td>
+        <td class="num">58,8%</td>
+        <td class="num">+23.696</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">18:00–18:59</span></td>
+        <td class="num">731</td>
+        <td class="num">0,1%</td>
+        <td class="num">201.266</td>
+        <td class="num">54,5%</td>
+        <td class="num">+18.174</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">19:00 ou depois</span></td>
+        <td class="num">6.327</td>
+        <td class="num">1,3%</td>
+        <td class="num">1.788.129</td>
+        <td class="num">55,1%</td>
+        <td class="num">+182.085</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="tabela">
+    <h2>O atraso da urna e o atraso da transmissão</h2>
+    <p class="sub">
+      São duas coisas diferentes: a urna fechar tarde (teve fila, registrou voto depois das 17h) e o
+      arquivo chegar tarde ao TSE (transmissão). Cruzando as duas, dá para responder quantas das urnas
+      que chegaram atrasadas para a totalização realmente votaram depois do horário.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Chegou ao TSE</th>
+          <th>Fechou a urna</th>
+          <th class="num">Urnas</th>
+          <th class="num">Votos válidos</th>
+          <th class="num">Lula</th>
+          <th class="num">Saldo Lula</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><span class="uf">até 20h23</span><br><span class="dim">206.595 urnas</span></td>
+          <td class="dim">no horário (até 17h05)</td>
+          <td class="num">190.960</td>
+          <td class="num">47.319.904</td>
+          <td class="num">50,5%</td>
+          <td class="num">+472.418</td>
+        </tr>
+        <tr class="destaque">
+          <td class="dim">depois das 17h</td>
+          <td class="num">15.635</td>
+          <td class="num">3.979.563</td>
+          <td class="num">56,3%</td>
+          <td class="num">+500.885</td>
+        </tr>
+        <tr>
+          <td rowspan="2"><span class="uf">depois das 20h23</span><br><span class="dim">291.302 urnas</span></td>
+          <td class="dim">no horário (até 17h05)</td>
+          <td class="num">249.886</td>
+          <td class="num">61.496.813</td>
+          <td class="num">51,7%</td>
+          <td class="num">+2.080.219</td>
+        </tr>
+        <tr class="destaque">
+          <td class="dim">depois das 17h</td>
+          <td class="num">41.416</td>
+          <td class="num">10.914.342</td>
+          <td class="num">56,2%</td>
+          <td class="num">+1.348.012</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:26px">
+      Das 291.302 urnas que chegaram depois das 20h23 — o bloco que decidiu a eleição —,
+      <strong>41.416 (14,2%)</strong> fecharam depois das 17h05.
+      No bloco que chegou mais cedo, essa proporção é de 7,6%. Ou seja: urna
+      que fecha com fila também tende a demorar mais para transmitir.
+    </p>
+  </section>
+
+  <section class="metodo">
+    <h2>Como os números foram feitos</h2>
+    <ul>
+      <li>Fonte: dataset <strong>"Resultados — 2026 — Boletim de Urna"</strong>, 28 arquivos
+          (<code>bweb_2t_UF_*.zip</code>, um por estado mais o exterior), ~1 GB de CSV.</li>
+      <li>Cada linha do BU é um candidato em uma urna. Dela saem <code>DT_ENCERRAMENTO</code>
+          (fechamento), <code>DT_BU_RECEBIDO</code> (chegada ao TSE) e os votos.</li>
+      <li>Os horários são locais; converti para Brasília inferindo o fuso de cada município pelo
+          horário legal de fechamento (15h local = UTC-5, 16h = UTC-4, 17h = UTC-3). Amazonas tem
+          os dois fusos.</li>
+      <li>Os totais conferem com a votação por seção: 123.710.622 votos válidos,
+          os mesmos 64.256.232 de Lula e 59.826.041 de Flávio (o exterior fica de fora do corte de horário).</li>
+      <li><strong>O que este dado não diz:</strong> quantos votos individuais foram digitados depois das 17h.
+          A urna registra o fechamento da seção, não o horário de cada voto. Os 14.893.905 votos
+          acima são um teto — vêm de urnas que estavam abertas depois das 17h05.</li>
+    </ul>
+    <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
+      <code>urnas.py</code> → <code>dados/urnas_fechamento_2026.parquet</code> → <code>graficos/14_urnas_fechamento.png</code>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    TSE · Dados Abertos · Resultados 2026 · Boletim de Urna — tratamento local, sem vínculo com o Tribunal.
+  </div>
+</footer>
+</body>
+</html>
