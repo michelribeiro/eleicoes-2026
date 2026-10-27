@@ -44,11 +44,14 @@
   .meta span::before { content: "◦ "; color: var(--hair); }
 
   .cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-    gap: 1px; background: var(--hair); border-block: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; border-block: 1px solid var(--hair);
     margin: 0; padding: 0;
   }
-  .card-stat { background: var(--paper); padding: 32px 26px 30px; }
+  .card-stat {
+    flex: 1 1 190px; background: var(--paper); padding: 32px 24px 30px;
+    border-right: 1px solid var(--hair);
+  }
+  .card-stat:last-child { border-right: none; }
   .card-stat b {
     display: block; font-family: var(--mono); font-size: 27px; font-weight: 500;
     letter-spacing: -.03em; color: var(--ink);
@@ -124,12 +127,13 @@
       Votos por seção eleitoral das Eleições Gerais de 2026, agregados por estado, região, cargo
       e município. Os 27 arquivos originais do TSE foram baixados, descompactados e somados:
       623.842.425 votos depositados, 112.197.244 eleitores válidos para governador
-      e 12,3% de votos em branco ou nulo.
+      e 12,3% de votos em branco ou nulo. No fim, a reconstrução da apuração
+      presidencial minuto a minuto — urna por urna, com o horário de recebimento de cada boletim.
     </p>
     <div class="meta">
       <span>eleição de 04/10 e 25/10/2026</span>
       <span>27 unidades da federação</span>
-      <span>12 gráficos</span>
+      <span>13 gráficos</span>
       <span>fonte: votacao_secao_2026_*.zip</span>
     </div>
   </div>
@@ -137,7 +141,7 @@
 
 <div class="wrap">
   <div class="cards">
-    <div class="card-stat"><b>623.842.425</b><small>votos depositados</small><small class="dim">1º turno, todos os cargos</small></div><div class="card-stat"><b>112.197.244</b><small>eleitores válidos</small><small class="dim">votos válidos para governador</small></div><div class="card-stat"><b>12,3%</b><small>brancos + nulos</small><small class="dim">37,1 mi + 39,4 mi</small></div><div class="card-stat"><b>6</b><small>estados com 2º turno</small><small class="dim">ES · RN · AM · DF · TO · AC</small></div>
+    <div class="card-stat"><b>623.842.425</b><small>votos depositados</small><small class="dim">1º turno, todos os cargos</small></div><div class="card-stat"><b>51,79%</b><small>Lula no 2º turno</small><small class="dim">Flávio 48,21% · margem 3,57 p.p.</small></div><div class="card-stat"><b>112.197.244</b><small>eleitores válidos</small><small class="dim">votos válidos para governador</small></div><div class="card-stat"><b>12,3%</b><small>brancos + nulos</small><small class="dim">37,1 mi + 39,4 mi</small></div><div class="card-stat"><b>6</b><small>estados com 2º turno</small><small class="dim">ES · RN · AM · DF · TO · AC</small></div>
   </div>
 </div>
 
@@ -259,6 +263,16 @@
       <figcaption>
         <h2>Regiões</h2>
         <p>O Sudeste tem 40% dos votos válidos e também o pior aproveitamento: 11,5% dos votos depositados não foram válidos.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="13_apuracao_presidente">
+    <figure>
+      <img src="graficos/13_apuracao_presidente.png" alt="A apuração, urna por urna" loading="lazy">
+      <figcaption>
+        <h2>A apuração, urna por urna</h2>
+        <p>Reconstrução minuto a minuto do 2º turno presidencial: Flávio liderou entre as 19:44 e as 20:23, quando 14% a 47% das urnas já haviam sido apuradas. Dali em diante Lula abriu vantagem e fechou em 51,79% × 48,21% — margem de 3,57 pontos, com 124.082.273 votos válidos.</p>
       </figcaption>
     </figure>
   </section>
@@ -511,10 +525,16 @@
           eleitor deposita exatamente um voto, então serve como medida de eleitor válido.</li>
       <li>Votos de legenda são identificados pelo código de candidato <code>-3</code>; brancos e nulos, por
           <code>-1</code>.</li>
+      <li>A apuração minuto a minuto não existe pronta: o arquivo de votação tem só o resultado final.
+          O horário de cada urna vem do <strong>Detalhe da apuração por seção eleitoral</strong>
+          (<code>DT_RECEBIMENTO_BU_HOR_TSE</code>), cruzado com os votos por
+          UF + município + zona + seção.</li>
+      <li>Os percentuais da apuração são cumulativos: cada ponto soma todas as urnas recebidas até aquele
+          minuto. Entre 17h07 e 19h02 nenhuma urna nova chegou ao TSE, por isso o patamar reto no começo.</li>
       <li>Sem dados de abstenção nem de comparecimento (essas bases vêm em outro conjunto do TSE).</li>
     </ul>
     <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
-      gerado em 27/10/2026 17:01 · <code>analise.py</code> → <code>graficos.py</code> → <code>relatorio.py</code>
+      gerado em 27/10/2026 17:16 · <code>analise.py</code> → <code>graficos.py</code> → <code>relatorio.py</code>
     </p>
   </section>
 </main>

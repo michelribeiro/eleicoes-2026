@@ -7,8 +7,30 @@ import json
 import pathlib
 from datetime import datetime
 
+import pandas as pd
+
 BASE = pathlib.Path(__file__).parent
 r = json.loads((BASE / "dados" / "resumo.json").read_text())
+
+# apuração minuto a minuto do 2º turno presidencial (se já foi gerada)
+serie_p = BASE / "dados" / "apuracao_presidente_2026.csv"
+apuracao = None
+if serie_p.exists():
+    s = pd.read_csv(serie_p)
+    d = s.pct_lula - s.pct_flavio
+    cruzes = [i for i in range(1, len(d)) if (d[i] > 0) != (d[i - 1] > 0)]
+    apuracao = {
+        "t_inicio": s.hora.iloc[0][11:],
+        "t_fim": s.hora.iloc[-1][11:],
+        "lula": s.pct_lula.iloc[-1],
+        "flavio": s.pct_flavio.iloc[-1],
+        "votos_lula": int(s.votos_lula.iloc[-1]),
+        "votos_flavio": int(s.votos_flavio.iloc[-1]),
+        "urnas": int(s.urnas.iloc[-1]),
+        "validos": int(s.votos_validos.iloc[-1]),
+        "cruzamentos": [(s.hora.iloc[i][11:], s.pct_urnas.iloc[i]) for i in cruzes],
+        "minutos": len(s),
+    }
 
 
 def n(v, dec=0):
@@ -60,6 +82,13 @@ blocos = [
     ("11_municipios.png", "Colégios eleitorais",
      "São Paulo, Rio e Brasília lideram; nenhum município fora das capitais e regiões metropolitanas "
      "aparece entre os quinze maiores."),
+    ("13_apuracao_presidente.png", "A apuração, urna por urna",
+     (f"Reconstrução minuto a minuto do 2º turno presidencial: Flávio liderou entre as "
+      f"{apuracao['cruzamentos'][0][0]} e as {apuracao['cruzamentos'][1][0]}, quando 14% a 47% "
+      f"das urnas já haviam sido apuradas. Dali em diante Lula abriu vantagem e fechou em "
+      f"{n(apuracao['lula'],2)}% × {n(apuracao['flavio'],2)}% — margem de "
+      f"{n(apuracao['lula']-apuracao['flavio'],2)} pontos, com {n(apuracao['validos'])} votos válidos.")
+     if apuracao else "A apuração do 2º turno presidencial minuto a minuto."),
     ("12_regioes.png", "Regiões",
      "O Sudeste tem 40% dos votos válidos e também o pior aproveitamento: 11,5% dos votos depositados "
      "não foram válidos."),
@@ -68,6 +97,10 @@ blocos.sort(key=lambda b: b[0])
 
 cards = [
     (n(r["total_votos"]), "votos depositados", "1º turno, todos os cargos"),
+    (f"{n(apuracao['lula'],2)}%" if apuracao else "—",
+     "Lula no 2º turno",
+     f"Flávio {n(apuracao['flavio'],2)}% · margem {n(apuracao['lula']-apuracao['flavio'],2)} p.p."
+     if apuracao else ""),
     (n(r["eleitores"]), "eleitores válidos", "votos válidos para governador"),
     (f"{n(r['pct_bn'],1)}%", "brancos + nulos", f"{mi(r['brancos'])} + {mi(r['nulos'])}"),
     (f"{len(r['ufs_turno2'])}", "estados com 2º turno", " · ".join(r["ufs_turno2"])),
@@ -145,11 +178,14 @@ html = f"""<!DOCTYPE html>
   .meta span::before {{ content: "◦ "; color: var(--hair); }}
 
   .cards {{
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-    gap: 1px; background: var(--hair); border-block: 1px solid var(--hair);
+    display: flex; flex-wrap: wrap; border-block: 1px solid var(--hair);
     margin: 0; padding: 0;
   }}
-  .card-stat {{ background: var(--paper); padding: 32px 26px 30px; }}
+  .card-stat {{
+    flex: 1 1 190px; background: var(--paper); padding: 32px 24px 30px;
+    border-right: 1px solid var(--hair);
+  }}
+  .card-stat:last-child {{ border-right: none; }}
   .card-stat b {{
     display: block; font-family: var(--mono); font-size: 27px; font-weight: 500;
     letter-spacing: -.03em; color: var(--ink);
@@ -225,7 +261,8 @@ html = f"""<!DOCTYPE html>
       Votos por seção eleitoral das Eleições Gerais de 2026, agregados por estado, região, cargo
       e município. Os 27 arquivos originais do TSE foram baixados, descompactados e somados:
       {n(r['total_votos'])} votos depositados, {n(r['eleitores'])} eleitores válidos para governador
-      e {n(r['pct_bn'],1)}% de votos em branco ou nulo.
+      e {n(r['pct_bn'],1)}% de votos em branco ou nulo. No fim, a reconstrução da apuração
+      presidencial minuto a minuto — urna por urna, com o horário de recebimento de cada boletim.
     </p>
     <div class="meta">
       <span>eleição de 04/10 e 25/10/2026</span>
@@ -278,6 +315,12 @@ html = f"""<!DOCTYPE html>
           eleitor deposita exatamente um voto, então serve como medida de eleitor válido.</li>
       <li>Votos de legenda são identificados pelo código de candidato <code>-3</code>; brancos e nulos, por
           <code>-1</code>.</li>
+      <li>A apuração minuto a minuto não existe pronta: o arquivo de votação tem só o resultado final.
+          O horário de cada urna vem do <strong>Detalhe da apuração por seção eleitoral</strong>
+          (<code>DT_RECEBIMENTO_BU_HOR_TSE</code>), cruzado com os votos por
+          UF + município + zona + seção.</li>
+      <li>Os percentuais da apuração são cumulativos: cada ponto soma todas as urnas recebidas até aquele
+          minuto. Entre 17h07 e 19h02 nenhuma urna nova chegou ao TSE, por isso o patamar reto no começo.</li>
       <li>Sem dados de abstenção nem de comparecimento (essas bases vêm em outro conjunto do TSE).</li>
     </ul>
     <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">

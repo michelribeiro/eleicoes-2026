@@ -16,11 +16,13 @@ ELEICOES/
 ├── graficos/                   12 gráficos em PNG (200 dpi, 2200 px de largura)
 ├── dados/
 │   ├── agregado.parquet        tabela consolidada (UF×cargo, município×cargo, candidato)
+│   ├── apuracao_presidente_2026.csv   apuração do 2º turno presidencial, minuto a minuto
 │   ├── resumo.json             números usados no relatório
 │   ├── votos_por_uf_e_cargo.csv
 │   ├── votos_por_municipio.csv
 │   ├── votos_por_candidato.csv
 │   └── br_ufs.geojson          malha das UFs (IBGE), usada nos mapas
+├── apuracao.py                 reconstrói a apuração presidencial (hora de cada urna) + gráfico
 ├── analise.py                  CSVs → dados/agregado.parquet
 ├── graficos.py                 agregado → graficos/*.png + dados/resumo.json
 ├── relatorio.py                resumo.json → index.html
@@ -44,6 +46,7 @@ ELEICOES/
 | `10_legendas.png` | Votos de legenda (sem nome) por partido |
 | `11_municipios.png` | 15 maiores colégios eleitorais |
 | `12_regioes.png` | Peso e aproveitamento do voto por região |
+| `13_apuracao_presidente.png` | **A virada do 2º turno presidencial, urna por urna** (17h → 23h21) |
 
 ## Números-chave
 
@@ -51,6 +54,9 @@ ELEICOES/
 - **112.197.244** votos válidos para governador (medida de eleitor válido)
 - **12,3%** dos votos em branco (6,0%) ou nulo (6,3%)
 - **6** estados com 2º turno para governador, somando 9,4 mi de votos válidos em 25/10/2026
+- **2º turno presidencial**: Lula 51,79% (64.256.232) × Flávio 48,21% (59.826.041) — margem de 3,57 p.p.
+  - Flávio liderou das **19h44** (13,9% das urnas) às **20h23** (47,3%); Lula virou e não perdeu mais
+  - 90% das urnas apuradas às 21h01; a última urna chegou às 23h21
 
 ## Como refazer
 
@@ -60,6 +66,17 @@ cd ELEICOES
 ./.venv/bin/python graficos.py    # gera os PNGs e o resumo.json
 ./.venv/bin/python relatorio.py   # monta o index.html
 ./.venv/bin/python exportar.py    # (opcional) CSVs de apoio
+./.venv/bin/python apuracao.py    # (opcional) apuração minuto a minuto + gráfico 13
+```
+
+`apuracao.py` usa outra fonte: além da votação por seção (arquivo `votacao_secao_2026_BR.zip`),
+baixa o **Detalhe da apuração por seção eleitoral**, que traz o horário de recebimento de cada urna
+(`DT_RECEBIMENTO_BU_HOR_TSE`). Os dois são cruzados por UF + município + zona + seção — sem essa
+coluna não existe série temporal: a votação por seção só guarda o resultado final.
+Os ~2,9 GB ficam em `.cache/` (fora do git) e podem ser apagados depois. Para não baixar de novo:
+
+```bash
+TSE_CACHE=/caminho/do/cache ./.venv/bin/python apuracao.py --forcar
 ```
 
 Para baixar de novo, os arquivos estão em
