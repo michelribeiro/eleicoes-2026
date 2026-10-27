@@ -1,0 +1,365 @@
+{
+  "total_votos": 623842425,
+  "validos": 547300426,
+  "brancos": 37142192,
+  "nulos": 39399807,
+  "pct_brancos": 5.953777830996345,
+  "pct_nulos": 6.315666492223578,
+  "pct_bn": 12.269444323219922,
+  "legenda": 10714283,
+  "eleitores": 112197244,
+  "validos_governador_t2": 9404837,
+  "ufs_turno2": [
+    "ES",
+    "RN",
+    "AM",
+    "DF",
+    "TO",
+    "AC"
+  ],
+  "pct_bn_ufs": 14.98,
+  "pct_bn_uf_max": "PE",
+  "pct_bn_uf_min": "AP",
+  "tabela_uf": [
+    {
+      "uf": "SP",
+      "regiao": "Sudeste",
+      "validos": 113708805,
+      "brancos": 9048968,
+      "nulos": 9213507,
+      "total": 131971280,
+      "pct_bn": 13.838219194358045
+    },
+    {
+      "uf": "MG",
+      "regiao": "Sudeste",
+      "validos": 54724816,
+      "brancos": 4384685,
+      "nulos": 4026334,
+      "total": 63135835,
+      "pct_bn": 13.322099881945014
+    },
+    {
+      "uf": "RJ",
+      "regiao": "Sudeste",
+      "validos": 42300800,
+      "brancos": 3291553,
+      "nulos": 3636982,
+      "total": 49229335,
+      "pct_bn": 14.073996733857975
+    },
+    {
+      "uf": "BA",
+      "regiao": "Nordeste",
+      "validos": 39182047,
+      "brancos": 2321609,
+      "nulos": 3727239,
+      "total": 45230895,
+      "pct_bn": 13.373266215492752
+    },
+    {
+      "uf": "PR",
+      "regiao": "Sul",
+      "validos": 30244282,
+      "brancos": 2166409,
+      "nulos": 1737384,
+      "total": 34148075,
+      "pct_bn": 11.43195626693452
+    },
+    {
+      "uf": "RS",
+      "regiao": "Sul",
+      "validos": 29745061,
+      "brancos": 2291792,
+      "nulos": 1450267,
+      "total": 33487120,
+      "pct_bn": 11.174621765024881
+    },
+    {
+      "uf": "CE",
+      "regiao": "Nordeste",
+      "validos": 26103889,
+      "brancos": 1532298,
+      "nulos": 1891423,
+      "total": 29527610,
+      "pct_bn": 11.594981781458099
+    },
+    {
+      "uf": "PE",
+      "regiao": "Nordeste",
+      "validos": 25101994,
+      "brancos": 2062769,
+      "nulos": 2361417,
+      "total": 29526180,
+      "pct_bn": 14.983943063410166
+    },
+    {
+      "uf": "PA",
+      "regiao": "Norte",
+      "validos": 23199997,
+      "brancos": 863110,
+      "nulos": 1250643,
+      "total": 25313750,
+      "pct_bn": 8.3502167794183
+    },
+    {
+      "uf": "SC",
+      "regiao": "Sul",
+      "validos": 20868446,
+      "brancos": 1264391,
+      "nulos": 1039913,
+      "total": 23172750,
+      "pct_bn": 9.94402477047394
+    },
+    {
+      "uf": "MA",
+      "regiao": "Nordeste",
+      "validos": 18933267,
+      "brancos": 901004,
+      "nulos": 957704,
+      "total": 20791975,
+      "pct_bn": 8.939545185101464
+    },
+    {
+      "uf": "GO",
+      "regiao": "Centro-Oeste",
+      "validos": 17562523,
+      "brancos": 1196616,
+      "nulos": 1073301,
+      "total": 19832440,
+      "pct_bn": 11.445475191151468
+    },
+    {
+      "uf": "PB",
+      "regiao": "Nordeste",
+      "validos": 11397448,
+      "brancos": 865286,
+      "nulos": 1126786,
+      "total": 13389520,
+      "pct_bn": 14.877844762172208
+    },
+    {
+      "uf": "ES",
+      "regiao": "Sudeste",
+      "validos": 10432816,
+      "brancos": 691141,
+      "nulos": 619103,
+      "total": 11743060,
+      "pct_bn": 11.157602873527003
+    },
+    {
+      "uf": "AM",
+      "regiao": "Norte",
+      "validos": 10217180,
+      "brancos": 407095,
+      "nulos": 537080,
+      "total": 11161355,
+      "pct_bn": 8.459322367221542
+    },
+    {
+      "uf": "PI",
+      "regiao": "Nordeste",
+      "validos": 9919750,
+      "brancos": 515263,
+      "nulos": 761917,
+      "total": 11196930,
+      "pct_bn": 11.406519465603518
+    },
+    {
+      "uf": "RN",
+      "regiao": "Nordeste",
+      "validos": 9506376,
+      "brancos": 586905,
+      "nulos": 745289,
+      "total": 10838570,
+      "pct_bn": 12.291233991199945
+    },
+    {
+      "uf": "MT",
+      "regiao": "Centro-Oeste",
+      "validos": 9263622,
+      "brancos": 488289,
+      "nulos": 496679,
+      "total": 10248590,
+      "pct_bn": 9.610765968782047
+    },
+    {
+      "uf": "AL",
+      "regiao": "Nordeste",
+      "validos": 8598294,
+      "brancos": 428031,
+      "nulos": 652775,
+      "total": 9679100,
+      "pct_bn": 11.166389437034436
+    },
+    {
+      "uf": "DF",
+      "regiao": "Centro-Oeste",
+      "validos": 8270684,
+      "brancos": 452656,
+      "nulos": 366265,
+      "total": 9089605,
+      "pct_bn": 9.009423401786986
+    },
+    {
+      "uf": "MS",
+      "regiao": "Centro-Oeste",
+      "validos": 6812516,
+      "brancos": 468826,
+      "nulos": 413703,
+      "total": 7695045,
+      "pct_bn": 11.468795829004248
+    },
+    {
+      "uf": "SE",
+      "regiao": "Nordeste",
+      "validos": 6185178,
+      "brancos": 423240,
+      "nulos": 574627,
+      "total": 7183045,
+      "pct_bn": 13.891977566616942
+    },
+    {
+      "uf": "RO",
+      "regiao": "Norte",
+      "validos": 4610321,
+      "brancos": 170185,
+      "nulos": 171059,
+      "total": 4951565,
+      "pct_bn": 6.891639309995931
+    },
+    {
+      "uf": "TO",
+      "regiao": "Norte",
+      "validos": 4326849,
+      "brancos": 173672,
+      "nulos": 318529,
+      "total": 4819050,
+      "pct_bn": 10.21365206835372
+    },
+    {
+      "uf": "AC",
+      "regiao": "Norte",
+      "validos": 2256797,
+      "brancos": 68720,
+      "nulos": 114338,
+      "total": 2439855,
+      "pct_bn": 7.502822913656754
+    },
+    {
+      "uf": "AP",
+      "regiao": "Norte",
+      "validos": 2256706,
+      "brancos": 40431,
+      "nulos": 82958,
+      "total": 2380095,
+      "pct_bn": 5.184204832160061
+    },
+    {
+      "uf": "RR",
+      "regiao": "Norte",
+      "validos": 1569962,
+      "brancos": 37248,
+      "nulos": 52585,
+      "total": 1659795,
+      "pct_bn": 5.4122948918390525
+    }
+  ],
+  "top_gov": [
+    {
+      "nome": "Tarcisio Gomes de Freitas",
+      "uf": "SP",
+      "votos": 14491874,
+      "pct": 62.59209274283466
+    },
+    {
+      "nome": "Fernando Haddad",
+      "uf": "SP",
+      "votos": 8423656,
+      "pct": 36.38275198816493
+    },
+    {
+      "nome": "Cleiton Gontijo de Azevedo",
+      "uf": "MG",
+      "votos": 6321590,
+      "pct": 55.39503506666544
+    },
+    {
+      "nome": "Jeronimo Rodrigues Souza",
+      "uf": "BA",
+      "votos": 4626509,
+      "pct": 55.80097429891606
+    },
+    {
+      "nome": "Douglas Ruas dos Santos",
+      "uf": "RJ",
+      "votos": 4271199,
+      "pct": 49.269584468311244
+    },
+    {
+      "nome": "Eduardo da Costa Paes",
+      "uf": "RJ",
+      "votos": 3706984,
+      "pct": 42.76119218764528
+    }
+  ],
+  "top_legendas": [
+    {
+      "partido": "PT",
+      "votos": 2843701,
+      "pct": 26.54121605710807
+    },
+    {
+      "partido": "PL",
+      "votos": 1961293,
+      "pct": 18.305405970702846
+    },
+    {
+      "partido": "MDB",
+      "votos": 746799,
+      "pct": 6.970125765765194
+    },
+    {
+      "partido": "PP",
+      "votos": 698726,
+      "pct": 6.521444318765894
+    },
+    {
+      "partido": "PSD",
+      "votos": 587079,
+      "pct": 5.479405388116032
+    }
+  ],
+  "regioes": [
+    {
+      "regiao": "Norte",
+      "validos": 9641334,
+      "pct_val": 91.42957771922921,
+      "share": 8.593200381998688
+    },
+    {
+      "regiao": "Nordeste",
+      "validos": 32131240,
+      "pct_val": 90.58002667680402,
+      "share": 28.638172253143757
+    },
+    {
+      "regiao": "Centro-Oeste",
+      "validos": 8511860,
+      "pct_val": 90.81122902729673,
+      "share": 7.586514335414514
+    },
+    {
+      "regiao": "Sudeste",
+      "validos": 45345927,
+      "pct_val": 88.53876477661177,
+      "share": 40.41625746172517
+    },
+    {
+      "regiao": "Sul",
+      "validos": 16566883,
+      "pct_val": 91.21934760223898,
+      "share": 14.765855567717868
+    }
+  ]
+}

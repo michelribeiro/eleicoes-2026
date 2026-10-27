@@ -1,0 +1,397 @@
+uf,estado,cargo,turno,tipo,votos
+AC,ACRE,Deputado Estadual,1,Candidato,446800.0
+AC,ACRE,Deputado Estadual,1,Legenda,26391.0
+AC,ACRE,Deputado Estadual,1,Branco,9032.0
+AC,ACRE,Deputado Estadual,1,Nulo,5748.0
+AC,ACRE,Deputado Federal,1,Candidato,454494.0
+AC,ACRE,Deputado Federal,1,Legenda,14163.0
+AC,ACRE,Deputado Federal,1,Branco,11808.0
+AC,ACRE,Deputado Federal,1,Nulo,7506.0
+AC,ACRE,Governador,1,Candidato,439647.0
+AC,ACRE,Governador,1,Nulo,39398.0
+AC,ACRE,Governador,1,Branco,8926.0
+AC,ACRE,Senador,1,Candidato,875302.0
+AC,ACRE,Senador,1,Nulo,61686.0
+AC,ACRE,Senador,1,Branco,38954.0
+AC,ACRE,Governador,2,Candidato,411743.0
+AC,ACRE,Governador,2,Nulo,29612.0
+AC,ACRE,Governador,2,Branco,11979.0
+AL,ALAGOAS,Deputado Estadual,1,Candidato,1689022.0
+AL,ALAGOAS,Deputado Estadual,1,Legenda,114549.0
+AL,ALAGOAS,Deputado Estadual,1,Branco,68334.0
+AL,ALAGOAS,Deputado Estadual,1,Nulo,63915.0
+AL,ALAGOAS,Deputado Federal,1,Candidato,1744811.0
+AL,ALAGOAS,Deputado Federal,1,Branco,76452.0
+AL,ALAGOAS,Deputado Federal,1,Nulo,60860.0
+AL,ALAGOAS,Deputado Federal,1,Legenda,53697.0
+AL,ALAGOAS,Governador,1,Candidato,1709614.0
+AL,ALAGOAS,Governador,1,Nulo,169903.0
+AL,ALAGOAS,Governador,1,Branco,56303.0
+AL,ALAGOAS,Senador,1,Candidato,3286601.0
+AL,ALAGOAS,Senador,1,Nulo,358097.0
+AL,ALAGOAS,Senador,1,Branco,226942.0
+AM,AMAZONAS,Deputado Estadual,1,Candidato,2033704.0
+AM,AMAZONAS,Deputado Estadual,1,Legenda,91910.0
+AM,AMAZONAS,Deputado Estadual,1,Branco,59294.0
+AM,AMAZONAS,Deputado Estadual,1,Nulo,47363.0
+AM,AMAZONAS,Deputado Federal,1,Candidato,2064866.0
+AM,AMAZONAS,Deputado Federal,1,Branco,68407.0
+AM,AMAZONAS,Deputado Federal,1,Legenda,55352.0
+AM,AMAZONAS,Deputado Federal,1,Nulo,43646.0
+AM,AMAZONAS,Governador,1,Candidato,2071985.0
+AM,AMAZONAS,Governador,1,Nulo,109946.0
+AM,AMAZONAS,Governador,1,Branco,50340.0
+AM,AMAZONAS,Senador,1,Candidato,3899363.0
+AM,AMAZONAS,Senador,1,Nulo,336125.0
+AM,AMAZONAS,Senador,1,Branco,229054.0
+AM,AMAZONAS,Governador,2,Candidato,2074303.0
+AM,AMAZONAS,Governador,2,Nulo,75947.0
+AM,AMAZONAS,Governador,2,Branco,39610.0
+AP,AMAPÁ,Deputado Estadual,1,Candidato,445771.0
+AP,AMAPÁ,Deputado Estadual,1,Legenda,18230.0
+AP,AMAPÁ,Deputado Estadual,1,Branco,6662.0
+AP,AMAPÁ,Deputado Estadual,1,Nulo,5356.0
+AP,AMAPÁ,Deputado Federal,1,Candidato,449003.0
+AP,AMAPÁ,Deputado Federal,1,Legenda,11730.0
+AP,AMAPÁ,Deputado Federal,1,Branco,8049.0
+AP,AMAPÁ,Deputado Federal,1,Nulo,7237.0
+AP,AMAPÁ,Governador,1,Candidato,448747.0
+AP,AMAPÁ,Governador,1,Nulo,24308.0
+AP,AMAPÁ,Governador,1,Branco,2964.0
+AP,AMAPÁ,Senador,1,Candidato,883225.0
+AP,AMAPÁ,Senador,1,Nulo,46057.0
+AP,AMAPÁ,Senador,1,Branco,22756.0
+BA,BAHIA,Deputado Estadual,1,Candidato,7407442.0
+BA,BAHIA,Deputado Estadual,1,Legenda,780491.0
+BA,BAHIA,Deputado Estadual,1,Branco,463958.0
+BA,BAHIA,Deputado Estadual,1,Nulo,394288.0
+BA,BAHIA,Deputado Federal,1,Candidato,8004069.0
+BA,BAHIA,Deputado Federal,1,Branco,405559.0
+BA,BAHIA,Deputado Federal,1,Nulo,356005.0
+BA,BAHIA,Deputado Federal,1,Legenda,280546.0
+BA,BAHIA,Governador,1,Candidato,8291090.0
+BA,BAHIA,Governador,1,Nulo,521993.0
+BA,BAHIA,Governador,1,Branco,233096.0
+BA,BAHIA,Senador,1,Candidato,14418409.0
+BA,BAHIA,Senador,1,Nulo,2454953.0
+BA,BAHIA,Senador,1,Branco,1218996.0
+CE,CEARÁ,Deputado Estadual,1,Candidato,5081250.0
+CE,CEARÁ,Deputado Estadual,1,Legenda,374675.0
+CE,CEARÁ,Deputado Estadual,1,Branco,279884.0
+CE,CEARÁ,Deputado Estadual,1,Nulo,169713.0
+CE,CEARÁ,Deputado Federal,1,Candidato,5358233.0
+CE,CEARÁ,Deputado Federal,1,Branco,236392.0
+CE,CEARÁ,Deputado Federal,1,Legenda,165953.0
+CE,CEARÁ,Deputado Federal,1,Nulo,144944.0
+CE,CEARÁ,Governador,1,Candidato,5406095.0
+CE,CEARÁ,Governador,1,Nulo,329111.0
+CE,CEARÁ,Governador,1,Branco,170316.0
+CE,CEARÁ,Senador,1,Candidato,9717683.0
+CE,CEARÁ,Senador,1,Nulo,1247655.0
+CE,CEARÁ,Senador,1,Branco,845706.0
+DF,DISTRITO FEDERAL,Deputado Distrital,1,Candidato,1628400.0
+DF,DISTRITO FEDERAL,Deputado Distrital,1,Branco,77934.0
+DF,DISTRITO FEDERAL,Deputado Distrital,1,Legenda,71631.0
+DF,DISTRITO FEDERAL,Deputado Distrital,1,Nulo,39956.0
+DF,DISTRITO FEDERAL,Deputado Federal,1,Candidato,1615773.0
+DF,DISTRITO FEDERAL,Deputado Federal,1,Branco,99027.0
+DF,DISTRITO FEDERAL,Deputado Federal,1,Legenda,56307.0
+DF,DISTRITO FEDERAL,Deputado Federal,1,Nulo,46814.0
+DF,DISTRITO FEDERAL,Governador,1,Candidato,1661693.0
+DF,DISTRITO FEDERAL,Governador,1,Nulo,81454.0
+DF,DISTRITO FEDERAL,Governador,1,Branco,74774.0
+DF,DISTRITO FEDERAL,Senador,1,Candidato,3236880.0
+DF,DISTRITO FEDERAL,Senador,1,Branco,200921.0
+DF,DISTRITO FEDERAL,Senador,1,Nulo,198041.0
+DF,DISTRITO FEDERAL,Governador,2,Candidato,1726272.0
+DF,DISTRITO FEDERAL,Governador,2,Nulo,72280.0
+DF,DISTRITO FEDERAL,Governador,2,Branco,55771.0
+ES,ESPÍRITO SANTO,Deputado Estadual,1,Candidato,2040574.0
+ES,ESPÍRITO SANTO,Deputado Estadual,1,Branco,128244.0
+ES,ESPÍRITO SANTO,Deputado Estadual,1,Legenda,114900.0
+ES,ESPÍRITO SANTO,Deputado Estadual,1,Nulo,64894.0
+ES,ESPÍRITO SANTO,Deputado Federal,1,Candidato,2075157.0
+ES,ESPÍRITO SANTO,Deputado Federal,1,Branco,133292.0
+ES,ESPÍRITO SANTO,Deputado Federal,1,Nulo,80076.0
+ES,ESPÍRITO SANTO,Deputado Federal,1,Legenda,60087.0
+ES,ESPÍRITO SANTO,Governador,1,Candidato,2112171.0
+ES,ESPÍRITO SANTO,Governador,1,Nulo,126401.0
+ES,ESPÍRITO SANTO,Governador,1,Branco,110040.0
+ES,ESPÍRITO SANTO,Senador,1,Candidato,4029927.0
+ES,ESPÍRITO SANTO,Senador,1,Nulo,347732.0
+ES,ESPÍRITO SANTO,Senador,1,Branco,319565.0
+ES,ESPÍRITO SANTO,Governador,2,Candidato,2207937.0
+ES,ESPÍRITO SANTO,Governador,2,Nulo,132846.0
+ES,ESPÍRITO SANTO,Governador,2,Branco,64871.0
+GO,GOIÁS,Deputado Estadual,1,Candidato,3414272.0
+GO,GOIÁS,Deputado Estadual,1,Legenda,224475.0
+GO,GOIÁS,Deputado Estadual,1,Branco,209348.0
+GO,GOIÁS,Deputado Estadual,1,Nulo,118393.0
+GO,GOIÁS,Deputado Federal,1,Candidato,3487584.0
+GO,GOIÁS,Deputado Federal,1,Branco,225997.0
+GO,GOIÁS,Deputado Federal,1,Nulo,129285.0
+GO,GOIÁS,Deputado Federal,1,Legenda,123622.0
+GO,GOIÁS,Governador,1,Candidato,3630576.0
+GO,GOIÁS,Governador,1,Branco,170266.0
+GO,GOIÁS,Governador,1,Nulo,165646.0
+GO,GOIÁS,Senador,1,Candidato,6681994.0
+GO,GOIÁS,Senador,1,Nulo,659977.0
+GO,GOIÁS,Senador,1,Branco,591005.0
+MA,MARANHÃO,Deputado Estadual,1,Candidato,3653085.0
+MA,MARANHÃO,Deputado Estadual,1,Legenda,271195.0
+MA,MARANHÃO,Deputado Estadual,1,Branco,145541.0
+MA,MARANHÃO,Deputado Estadual,1,Nulo,88574.0
+MA,MARANHÃO,Deputado Federal,1,Candidato,3858158.0
+MA,MARANHÃO,Deputado Federal,1,Branco,129047.0
+MA,MARANHÃO,Deputado Federal,1,Legenda,113904.0
+MA,MARANHÃO,Deputado Federal,1,Nulo,57286.0
+MA,MARANHÃO,Governador,1,Candidato,3895080.0
+MA,MARANHÃO,Governador,1,Nulo,169646.0
+MA,MARANHÃO,Governador,1,Branco,93669.0
+MA,MARANHÃO,Senador,1,Candidato,7141845.0
+MA,MARANHÃO,Senador,1,Nulo,642198.0
+MA,MARANHÃO,Senador,1,Branco,532747.0
+MG,MINAS GERAIS,Deputado Estadual,1,Candidato,10531342.0
+MG,MINAS GERAIS,Deputado Estadual,1,Branco,827100.0
+MG,MINAS GERAIS,Deputado Estadual,1,Legenda,781888.0
+MG,MINAS GERAIS,Deputado Estadual,1,Nulo,486837.0
+MG,MINAS GERAIS,Deputado Federal,1,Candidato,11142727.0
+MG,MINAS GERAIS,Deputado Federal,1,Branco,699059.0
+MG,MINAS GERAIS,Deputado Federal,1,Nulo,453843.0
+MG,MINAS GERAIS,Deputado Federal,1,Legenda,331538.0
+MG,MINAS GERAIS,Governador,1,Candidato,11411835.0
+MG,MINAS GERAIS,Governador,1,Branco,658416.0
+MG,MINAS GERAIS,Governador,1,Nulo,556916.0
+MG,MINAS GERAIS,Senador,1,Candidato,20525486.0
+MG,MINAS GERAIS,Senador,1,Nulo,2528738.0
+MG,MINAS GERAIS,Senador,1,Branco,2200110.0
+MS,MATO GROSSO DO SUL,Deputado Estadual,1,Candidato,1340075.0
+MS,MATO GROSSO DO SUL,Deputado Estadual,1,Branco,81571.0
+MS,MATO GROSSO DO SUL,Deputado Estadual,1,Legenda,77544.0
+MS,MATO GROSSO DO SUL,Deputado Estadual,1,Nulo,39819.0
+MS,MATO GROSSO DO SUL,Deputado Federal,1,Candidato,1367999.0
+MS,MATO GROSSO DO SUL,Deputado Federal,1,Branco,81203.0
+MS,MATO GROSSO DO SUL,Deputado Federal,1,Legenda,52768.0
+MS,MATO GROSSO DO SUL,Deputado Federal,1,Nulo,37039.0
+MS,MATO GROSSO DO SUL,Governador,1,Candidato,1363298.0
+MS,MATO GROSSO DO SUL,Governador,1,Nulo,95189.0
+MS,MATO GROSSO DO SUL,Governador,1,Branco,80522.0
+MS,MATO GROSSO DO SUL,Senador,1,Candidato,2610832.0
+MS,MATO GROSSO DO SUL,Senador,1,Nulo,241656.0
+MS,MATO GROSSO DO SUL,Senador,1,Branco,225530.0
+MT,MATO GROSSO,Deputado Estadual,1,Candidato,1823900.0
+MT,MATO GROSSO,Deputado Estadual,1,Legenda,103557.0
+MT,MATO GROSSO,Deputado Estadual,1,Branco,78422.0
+MT,MATO GROSSO,Deputado Estadual,1,Nulo,43839.0
+MT,MATO GROSSO,Deputado Federal,1,Candidato,1845925.0
+MT,MATO GROSSO,Deputado Federal,1,Branco,93665.0
+MT,MATO GROSSO,Deputado Federal,1,Legenda,58683.0
+MT,MATO GROSSO,Deputado Federal,1,Nulo,51445.0
+MT,MATO GROSSO,Governador,1,Candidato,1856293.0
+MT,MATO GROSSO,Governador,1,Nulo,110735.0
+MT,MATO GROSSO,Governador,1,Branco,82690.0
+MT,MATO GROSSO,Senador,1,Candidato,3575264.0
+MT,MATO GROSSO,Senador,1,Nulo,290660.0
+MT,MATO GROSSO,Senador,1,Branco,233512.0
+PA,PARÁ,Deputado Estadual,1,Candidato,4515673.0
+PA,PARÁ,Deputado Estadual,1,Legenda,310618.0
+PA,PARÁ,Deputado Estadual,1,Branco,150725.0
+PA,PARÁ,Deputado Estadual,1,Nulo,85734.0
+PA,PARÁ,Deputado Federal,1,Candidato,4705578.0
+PA,PARÁ,Deputado Federal,1,Branco,148260.0
+PA,PARÁ,Deputado Federal,1,Legenda,127925.0
+PA,PARÁ,Deputado Federal,1,Nulo,80987.0
+PA,PARÁ,Governador,1,Candidato,4566828.0
+PA,PARÁ,Governador,1,Nulo,389825.0
+PA,PARÁ,Governador,1,Branco,106097.0
+PA,PARÁ,Senador,1,Candidato,8973375.0
+PA,PARÁ,Senador,1,Nulo,694097.0
+PA,PARÁ,Senador,1,Branco,458028.0
+PB,PARAÍBA,Deputado Estadual,1,Candidato,2273042.0
+PB,PARAÍBA,Deputado Estadual,1,Legenda,149399.0
+PB,PARAÍBA,Deputado Estadual,1,Branco,139955.0
+PB,PARAÍBA,Deputado Estadual,1,Nulo,115508.0
+PB,PARAÍBA,Deputado Federal,1,Candidato,2335201.0
+PB,PARAÍBA,Deputado Federal,1,Branco,154973.0
+PB,PARAÍBA,Deputado Federal,1,Nulo,117898.0
+PB,PARAÍBA,Deputado Federal,1,Legenda,69832.0
+PB,PARAÍBA,Governador,1,Candidato,2287212.0
+PB,PARAÍBA,Governador,1,Nulo,262876.0
+PB,PARAÍBA,Governador,1,Branco,127816.0
+PB,PARAÍBA,Senador,1,Candidato,4282762.0
+PB,PARAÍBA,Senador,1,Nulo,630504.0
+PB,PARAÍBA,Senador,1,Branco,442542.0
+PE,PERNAMBUCO,Deputado Estadual,1,Candidato,4896912.0
+PE,PERNAMBUCO,Deputado Estadual,1,Branco,393817.0
+PE,PERNAMBUCO,Deputado Estadual,1,Legenda,361091.0
+PE,PERNAMBUCO,Deputado Estadual,1,Nulo,253416.0
+PE,PERNAMBUCO,Deputado Federal,1,Candidato,5102745.0
+PE,PERNAMBUCO,Deputado Federal,1,Branco,387863.0
+PE,PERNAMBUCO,Deputado Federal,1,Nulo,251191.0
+PE,PERNAMBUCO,Deputado Federal,1,Legenda,163437.0
+PE,PERNAMBUCO,Governador,1,Candidato,5266852.0
+PE,PERNAMBUCO,Governador,1,Nulo,481903.0
+PE,PERNAMBUCO,Governador,1,Branco,156481.0
+PE,PERNAMBUCO,Senador,1,Candidato,9310957.0
+PE,PERNAMBUCO,Senador,1,Nulo,1374907.0
+PE,PERNAMBUCO,Senador,1,Branco,1124608.0
+PI,PIAUÍ,Deputado Estadual,1,Candidato,1944484.0
+PI,PIAUÍ,Deputado Estadual,1,Legenda,160964.0
+PI,PIAUÍ,Deputado Estadual,1,Branco,67898.0
+PI,PIAUÍ,Deputado Estadual,1,Nulo,66040.0
+PI,PIAUÍ,Deputado Federal,1,Candidato,2032293.0
+PI,PIAUÍ,Deputado Federal,1,Legenda,83073.0
+PI,PIAUÍ,Deputado Federal,1,Branco,71640.0
+PI,PIAUÍ,Deputado Federal,1,Nulo,52380.0
+PI,PIAUÍ,Governador,1,Candidato,2026275.0
+PI,PIAUÍ,Governador,1,Nulo,136522.0
+PI,PIAUÍ,Governador,1,Branco,76589.0
+PI,PIAUÍ,Senador,1,Candidato,3672661.0
+PI,PIAUÍ,Senador,1,Nulo,506975.0
+PI,PIAUÍ,Senador,1,Branco,299136.0
+PR,PARANÁ,Deputado Estadual,1,Candidato,5811810.0
+PR,PARANÁ,Deputado Estadual,1,Branco,437246.0
+PR,PARANÁ,Deputado Estadual,1,Legenda,386088.0
+PR,PARANÁ,Deputado Estadual,1,Nulo,194471.0
+PR,PARANÁ,Deputado Federal,1,Candidato,6066491.0
+PR,PARANÁ,Deputado Federal,1,Branco,392163.0
+PR,PARANÁ,Deputado Federal,1,Nulo,187700.0
+PR,PARANÁ,Deputado Federal,1,Legenda,183261.0
+PR,PARANÁ,Governador,1,Candidato,6243799.0
+PR,PARANÁ,Governador,1,Nulo,307494.0
+PR,PARANÁ,Governador,1,Branco,278322.0
+PR,PARANÁ,Senador,1,Candidato,11552833.0
+PR,PARANÁ,Senador,1,Branco,1058678.0
+PR,PARANÁ,Senador,1,Nulo,1047719.0
+RJ,RIO DE JANEIRO,Deputado Estadual,1,Candidato,8284093.0
+RJ,RIO DE JANEIRO,Deputado Estadual,1,Branco,570853.0
+RJ,RIO DE JANEIRO,Deputado Estadual,1,Legenda,536018.0
+RJ,RIO DE JANEIRO,Deputado Estadual,1,Nulo,454903.0
+RJ,RIO DE JANEIRO,Deputado Federal,1,Candidato,8605470.0
+RJ,RIO DE JANEIRO,Deputado Federal,1,Branco,518397.0
+RJ,RIO DE JANEIRO,Deputado Federal,1,Nulo,445301.0
+RJ,RIO DE JANEIRO,Deputado Federal,1,Legenda,276699.0
+RJ,RIO DE JANEIRO,Governador,1,Candidato,8669038.0
+RJ,RIO DE JANEIRO,Governador,1,Nulo,675292.0
+RJ,RIO DE JANEIRO,Governador,1,Branco,501537.0
+RJ,RIO DE JANEIRO,Senador,1,Candidato,15929482.0
+RJ,RIO DE JANEIRO,Senador,1,Nulo,2061486.0
+RJ,RIO DE JANEIRO,Senador,1,Branco,1700766.0
+RN,RIO GRANDE DO NORTE,Deputado Estadual,1,Candidato,1854403.0
+RN,RIO GRANDE DO NORTE,Deputado Estadual,1,Nulo,121780.0
+RN,RIO GRANDE DO NORTE,Deputado Estadual,1,Branco,103009.0
+RN,RIO GRANDE DO NORTE,Deputado Estadual,1,Legenda,88522.0
+RN,RIO GRANDE DO NORTE,Deputado Federal,1,Candidato,1907004.0
+RN,RIO GRANDE DO NORTE,Deputado Federal,1,Branco,105390.0
+RN,RIO GRANDE DO NORTE,Deputado Federal,1,Nulo,94498.0
+RN,RIO GRANDE DO NORTE,Deputado Federal,1,Legenda,60822.0
+RN,RIO GRANDE DO NORTE,Governador,1,Candidato,1988819.0
+RN,RIO GRANDE DO NORTE,Governador,1,Nulo,102371.0
+RN,RIO GRANDE DO NORTE,Governador,1,Branco,76524.0
+RN,RIO GRANDE DO NORTE,Senador,1,Candidato,3606806.0
+RN,RIO GRANDE DO NORTE,Senador,1,Nulo,426640.0
+RN,RIO GRANDE DO NORTE,Senador,1,Branco,301982.0
+RN,RIO GRANDE DO NORTE,Governador,2,Candidato,2113423.0
+RN,RIO GRANDE DO NORTE,Governador,2,Nulo,80214.0
+RN,RIO GRANDE DO NORTE,Governador,2,Branco,35873.0
+RO,RONDÔNIA,Deputado Estadual,1,Candidato,898689.0
+RO,RONDÔNIA,Deputado Estadual,1,Legenda,45420.0
+RO,RONDÔNIA,Deputado Estadual,1,Branco,28295.0
+RO,RONDÔNIA,Deputado Estadual,1,Nulo,17909.0
+RO,RONDÔNIA,Deputado Federal,1,Candidato,906454.0
+RO,RONDÔNIA,Deputado Federal,1,Branco,35350.0
+RO,RONDÔNIA,Deputado Federal,1,Legenda,29486.0
+RO,RONDÔNIA,Deputado Federal,1,Nulo,19023.0
+RO,RONDÔNIA,Governador,1,Candidato,945058.0
+RO,RONDÔNIA,Governador,1,Branco,23607.0
+RO,RONDÔNIA,Governador,1,Nulo,21648.0
+RO,RONDÔNIA,Senador,1,Candidato,1785214.0
+RO,RONDÔNIA,Senador,1,Nulo,112479.0
+RO,RONDÔNIA,Senador,1,Branco,82933.0
+RR,RORAIMA,Deputado Estadual,1,Candidato,312204.0
+RR,RORAIMA,Deputado Estadual,1,Legenda,9653.0
+RR,RORAIMA,Deputado Estadual,1,Nulo,5626.0
+RR,RORAIMA,Deputado Estadual,1,Branco,4476.0
+RR,RORAIMA,Deputado Federal,1,Candidato,310876.0
+RR,RORAIMA,Deputado Federal,1,Legenda,8203.0
+RR,RORAIMA,Deputado Federal,1,Branco,7649.0
+RR,RORAIMA,Deputado Federal,1,Nulo,5231.0
+RR,RORAIMA,Governador,1,Candidato,319413.0
+RR,RORAIMA,Governador,1,Nulo,8869.0
+RR,RORAIMA,Governador,1,Branco,3677.0
+RR,RORAIMA,Senador,1,Candidato,609613.0
+RR,RORAIMA,Senador,1,Nulo,32859.0
+RR,RORAIMA,Senador,1,Branco,21446.0
+RS,RIO GRANDE DO SUL,Deputado Estadual,1,Candidato,5775611.0
+RS,RIO GRANDE DO SUL,Deputado Estadual,1,Branco,439281.0
+RS,RIO GRANDE DO SUL,Deputado Estadual,1,Legenda,334675.0
+RS,RIO GRANDE DO SUL,Deputado Estadual,1,Nulo,147857.0
+RS,RIO GRANDE DO SUL,Deputado Federal,1,Candidato,5932287.0
+RS,RIO GRANDE DO SUL,Deputado Federal,1,Branco,438835.0
+RS,RIO GRANDE DO SUL,Deputado Federal,1,Legenda,176953.0
+RS,RIO GRANDE DO SUL,Deputado Federal,1,Nulo,149349.0
+RS,RIO GRANDE DO SUL,Governador,1,Candidato,6057443.0
+RS,RIO GRANDE DO SUL,Governador,1,Branco,324123.0
+RS,RIO GRANDE DO SUL,Governador,1,Nulo,315858.0
+RS,RIO GRANDE DO SUL,Senador,1,Candidato,11468092.0
+RS,RIO GRANDE DO SUL,Senador,1,Branco,1089553.0
+RS,RIO GRANDE DO SUL,Senador,1,Nulo,837203.0
+SC,SANTA CATARINA,Deputado Estadual,1,Candidato,4072538.0
+SC,SANTA CATARINA,Deputado Estadual,1,Branco,235529.0
+SC,SANTA CATARINA,Deputado Estadual,1,Legenda,216297.0
+SC,SANTA CATARINA,Deputado Estadual,1,Nulo,110186.0
+SC,SANTA CATARINA,Deputado Federal,1,Candidato,4138792.0
+SC,SANTA CATARINA,Deputado Federal,1,Branco,251824.0
+SC,SANTA CATARINA,Deputado Federal,1,Legenda,122103.0
+SC,SANTA CATARINA,Deputado Federal,1,Nulo,121831.0
+SC,SANTA CATARINA,Governador,1,Candidato,4265641.0
+SC,SANTA CATARINA,Governador,1,Nulo,198989.0
+SC,SANTA CATARINA,Governador,1,Branco,169920.0
+SC,SANTA CATARINA,Senador,1,Candidato,8053075.0
+SC,SANTA CATARINA,Senador,1,Nulo,608907.0
+SC,SANTA CATARINA,Senador,1,Branco,607118.0
+SE,SERGIPE,Deputado Estadual,1,Candidato,1220993.0
+SE,SERGIPE,Deputado Estadual,1,Branco,73203.0
+SE,SERGIPE,Deputado Estadual,1,Legenda,72793.0
+SE,SERGIPE,Deputado Estadual,1,Nulo,69620.0
+SE,SERGIPE,Deputado Federal,1,Candidato,1254944.0
+SE,SERGIPE,Deputado Federal,1,Branco,74513.0
+SE,SERGIPE,Deputado Federal,1,Nulo,64076.0
+SE,SERGIPE,Deputado Federal,1,Legenda,43076.0
+SE,SERGIPE,Governador,1,Candidato,1260203.0
+SE,SERGIPE,Governador,1,Nulo,121652.0
+SE,SERGIPE,Governador,1,Branco,54754.0
+SE,SERGIPE,Senador,1,Candidato,2333169.0
+SE,SERGIPE,Senador,1,Nulo,319279.0
+SE,SERGIPE,Senador,1,Branco,220770.0
+SP,SÃO PAULO,Deputado Estadual,1,Candidato,21831011.0
+SP,SÃO PAULO,Deputado Estadual,1,Branco,1847209.0
+SP,SÃO PAULO,Deputado Estadual,1,Legenda,1495811.0
+SP,SÃO PAULO,Deputado Estadual,1,Nulo,1220225.0
+SP,SÃO PAULO,Deputado Federal,1,Candidato,23024403.0
+SP,SÃO PAULO,Deputado Federal,1,Branco,1561578.0
+SP,SÃO PAULO,Deputado Federal,1,Nulo,1121222.0
+SP,SÃO PAULO,Deputado Federal,1,Legenda,687053.0
+SP,SÃO PAULO,Governador,1,Candidato,23152883.0
+SP,SÃO PAULO,Governador,1,Nulo,1893111.0
+SP,SÃO PAULO,Governador,1,Branco,1348262.0
+SP,SÃO PAULO,Senador,1,Candidato,43517644.0
+SP,SÃO PAULO,Senador,1,Nulo,4978949.0
+SP,SÃO PAULO,Senador,1,Branco,4291919.0
+TO,TOCANTINS,Deputado Estadual,1,Candidato,859595.0
+TO,TOCANTINS,Deputado Estadual,1,Legenda,57061.0
+TO,TOCANTINS,Deputado Estadual,1,Branco,24028.0
+TO,TOCANTINS,Deputado Estadual,1,Nulo,23126.0
+TO,TOCANTINS,Deputado Federal,1,Candidato,878708.0
+TO,TOCANTINS,Deputado Federal,1,Branco,28980.0
+TO,TOCANTINS,Deputado Federal,1,Legenda,28164.0
+TO,TOCANTINS,Deputado Federal,1,Nulo,27958.0
+TO,TOCANTINS,Governador,1,Candidato,849656.0
+TO,TOCANTINS,Governador,1,Nulo,87069.0
+TO,TOCANTINS,Governador,1,Branco,27085.0
+TO,TOCANTINS,Senador,1,Candidato,1653665.0
+TO,TOCANTINS,Senador,1,Nulo,180376.0
+TO,TOCANTINS,Senador,1,Branco,93579.0
+TO,TOCANTINS,Governador,2,Candidato,871159.0
+TO,TOCANTINS,Governador,2,Nulo,61903.0
+TO,TOCANTINS,Governador,2,Branco,20323.0

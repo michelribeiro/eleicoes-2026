@@ -1,0 +1,12 @@
+# dados brutos (18 GB) — baixados dos servidores do TSE, não versionar
+csv/
+zips/
+
+# ambiente Python
+.venv/
+__pycache__/
+*.pyc
+.duck_tmp/
+
+# lixo de sistema
+.DS_Store

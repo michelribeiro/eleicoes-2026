@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eleições 2026 · votos por região</title>
+<style>
+  :root {
+    --paper: #FAF7F1;
+    --paper-2: #F4EFE4;
+    --ink: #1A2129;
+    --ink-soft: #5D6673;
+    --hair: #E2D9CA;
+    --rust: #C2543D;
+    --teal: #2F6F6B;
+    --indigo: #4A5C82;
+    --serif: "Iowan Old Style", "Palatino", Georgia, serif;
+    --sans: "Avenir Next", "Helvetica Neue", -apple-system, system-ui, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  header.hero { padding: 88px 0 56px; border-bottom: 1px solid var(--hair); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--rust); margin: 0 0 22px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(38px, 6.2vw, 68px);
+    line-height: 1.02; letter-spacing: -.02em; margin: 0 0 22px; max-width: 20ch;
+  }
+  h1 em { font-style: italic; color: var(--rust); }
+  .lead { max-width: 62ch; color: var(--ink-soft); font-size: 18.5px; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 34px;
+    font-family: var(--mono); font-size: 12px; color: var(--ink-soft);
+  }
+  .meta span::before { content: "◦ "; color: var(--hair); }
+
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 1px; background: var(--hair); border-block: 1px solid var(--hair);
+    margin: 0; padding: 0;
+  }
+  .card-stat { background: var(--paper); padding: 32px 26px 30px; }
+  .card-stat b {
+    display: block; font-family: var(--mono); font-size: 27px; font-weight: 500;
+    letter-spacing: -.03em; color: var(--ink);
+  }
+  .card-stat small { display: block; color: var(--ink-soft); font-size: 13.5px; margin-top: 6px; }
+  .card-stat small.dim { color: #9AA1AB; font-family: var(--mono); font-size: 11.5px; }
+
+  main { padding: 18px 0 40px; }
+  section.card { padding: 54px 0; border-bottom: 1px solid var(--hair); }
+  section.card:last-child { border-bottom: none; }
+  figure { margin: 0; }
+  figure img {
+    width: 100%; height: auto; display: block; border-radius: 3px;
+    border: 1px solid var(--hair); background: #fff;
+  }
+  figcaption { display: grid; grid-template-columns: 240px 1fr; gap: 12px 44px; margin-top: 26px; }
+  figcaption h2 {
+    font-family: var(--serif); font-size: 21px; font-weight: 600; margin: 0;
+    letter-spacing: -.01em;
+  }
+  figcaption p { margin: 0; color: var(--ink-soft); font-size: 15.5px; max-width: 62ch; }
+
+  section.tabela { padding: 60px 0 20px; }
+  .tabela h2 {
+    font-family: var(--serif); font-size: 30px; font-weight: 600; margin: 0 0 8px;
+    letter-spacing: -.015em;
+  }
+  .tabela p.sub { color: var(--ink-soft); margin: 0 0 30px; font-size: 15.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th {
+    text-align: left; font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft);
+    padding: 0 12px 12px 0; border-bottom: 1px solid var(--ink); cursor: pointer;
+    white-space: nowrap;
+  }
+  thead th.num, td.num { text-align: right; }
+  tbody td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hair); }
+  tbody tr:hover td { background: var(--paper-2); }
+  td.num { font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
+  td.dim { color: #9AA1AB; font-size: 13px; }
+  .uf { font-family: var(--mono); font-weight: 500; font-size: 13px; }
+  .barra {
+    display: inline-block; height: 6px; width: var(--w); max-width: 60px;
+    background: var(--rust); opacity: .55; border-radius: 1px; margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .metodo { padding: 60px 0 90px; border-top: 1px solid var(--hair); }
+  .metodo h2 { font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 0 0 14px; }
+  .metodo ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 15px; }
+  .metodo li { margin-bottom: 7px; }
+  .metodo code {
+    font-family: var(--mono); font-size: 12.5px; background: var(--paper-2);
+    padding: 1px 6px; border-radius: 3px; color: var(--ink);
+  }
+  footer {
+    padding: 26px 0 60px; color: #9AA1AB; font-family: var(--mono); font-size: 11.5px;
+  }
+  @media (max-width: 720px) {
+    figcaption { grid-template-columns: 1fr; }
+    header.hero { padding-top: 56px; }
+    section.card { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Tribunal Superior Eleitoral · Dados Abertos</p>
+    <h1>Como o Brasil <em>votou</em> em 2026</h1>
+    <p class="lead">
+      Votos por seção eleitoral das Eleições Gerais de 2026, agregados por estado, região, cargo
+      e município. Os 27 arquivos originais do TSE foram baixados, descompactados e somados:
+      623.842.425 votos depositados, 112.197.244 eleitores válidos para governador
+      e 12,3% de votos em branco ou nulo.
+    </p>
+    <div class="meta">
+      <span>eleição de 04/10 e 25/10/2026</span>
+      <span>27 unidades da federação</span>
+      <span>12 gráficos</span>
+      <span>fonte: votacao_secao_2026_*.zip</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="cards">
+    <div class="card-stat"><b>623.842.425</b><small>votos depositados</small><small class="dim">1º turno, todos os cargos</small></div><div class="card-stat"><b>112.197.244</b><small>eleitores válidos</small><small class="dim">votos válidos para governador</small></div><div class="card-stat"><b>12,3%</b><small>brancos + nulos</small><small class="dim">37,1 mi + 39,4 mi</small></div><div class="card-stat"><b>6</b><small>estados com 2º turno</small><small class="dim">ES · RN · AM · DF · TO · AC</small></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="card" id="01_mapa">
+    <figure>
+      <img src="graficos/01_mapa.png" alt="O mapa" loading="lazy">
+      <figcaption>
+        <h2>O mapa</h2>
+        <p>As duas leituras do mesmo território: à esquerda, onde estão os votos válidos para governador; à direita, onde eles se perdem em brancos e nulos. O Nordeste concentra os maiores percentuais de voto desperdiçado — Pernambuco lidera com 15,0%.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="02_votos_uf">
+    <figure>
+      <img src="graficos/02_votos_uf.png" alt="O tamanho de cada estado" loading="lazy">
+      <figcaption>
+        <h2>O tamanho de cada estado</h2>
+        <p>São Paulo sozinho tem mais votos válidos que a região Norte inteira. Entre o maior e o menor estado, a diferença é de 72,4 vezes.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="03_brancos_nulos">
+    <figure>
+      <img src="graficos/03_brancos_nulos.png" alt="Brancos e nulos" loading="lazy">
+      <figcaption>
+        <h2>Brancos e nulos</h2>
+        <p>6,0% dos votos foram em branco e 6,3% nulos. A diferença entre o estado mais e o menos desperdiçador passa de 10 pontos percentuais.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="04_cargos">
+    <figure>
+      <img src="graficos/04_cargos.png" alt="Quantos votos por cargo" loading="lazy">
+      <figcaption>
+        <h2>Quantos votos por cargo</h2>
+        <p>Cada eleitor digita cinco números na urna — e dois deles vão para o Senado, o único cargo que aparece com o dobro de votos. Deputado distrital existe apenas no Distrito Federal.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="05_governadores">
+    <figure>
+      <img src="graficos/05_governadores.png" alt="Governadores" loading="lazy">
+      <figcaption>
+        <h2>Governadores</h2>
+        <p>Ranking nacional de votos nominais, com a participação de cada um dentro do próprio estado. Tarcísio de Freitas (SP) é o mais votado do país, com 62,6% dos votos válidos paulistas.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="06_senadores">
+    <figure>
+      <img src="graficos/06_senadores.png" alt="Senadores" loading="lazy">
+      <figcaption>
+        <h2>Senadores</h2>
+        <p>Duas vagas por estado: os nomes abaixo somam votos de eleitores diferentes, então o ranking mede peso eleitoral, não vantagem competitiva.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="07_dep_federal">
+    <figure>
+      <img src="graficos/07_dep_federal.png" alt="Deputados federais" loading="lazy">
+      <figcaption>
+        <h2>Deputados federais</h2>
+        <p>O topo da lista nacional mostra os puxadores de voto: candidatos que sozinhos somam mais que partidos inteiros, medidos em % dos votos válidos do seu estado.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="08_turno2">
+    <figure>
+      <img src="graficos/08_turno2.png" alt="Os seis segundos turnos" loading="lazy">
+      <figcaption>
+        <h2>Os seis segundos turnos</h2>
+        <p>Governador foi decidido em dois turnos em 6 estados (ES, RN, AM, DF, TO, AC), somando 9,4 mi votos válidos em 25/10.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="09_concentracao">
+    <figure>
+      <img src="graficos/09_concentracao.png" alt="A concentração do voto" loading="lazy">
+      <figcaption>
+        <h2>A concentração do voto</h2>
+        <p>Metade dos votos nominais para deputado federal ficou com 297 candidatos — 4% do total. A cauda longa de candidatos leva poucos votos cada.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="10_legendas">
+    <figure>
+      <img src="graficos/10_legendas.png" alt="Voto de legenda" loading="lazy">
+      <figcaption>
+        <h2>Voto de legenda</h2>
+        <p>10,7 mi votos foram digitados direto no número do partido (voto de legenda), sem escolher um nome — PT e PL concentram quase metade desse total.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="11_municipios">
+    <figure>
+      <img src="graficos/11_municipios.png" alt="Colégios eleitorais" loading="lazy">
+      <figcaption>
+        <h2>Colégios eleitorais</h2>
+        <p>São Paulo, Rio e Brasília lideram; nenhum município fora das capitais e regiões metropolitanas aparece entre os quinze maiores.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="card" id="12_regioes">
+    <figure>
+      <img src="graficos/12_regioes.png" alt="Regiões" loading="lazy">
+      <figcaption>
+        <h2>Regiões</h2>
+        <p>O Sudeste tem 40% dos votos válidos e também o pior aproveitamento: 11,5% dos votos depositados não foram válidos.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="tabela">
+    <h2>Os 27 estados, lado a lado</h2>
+    <p class="sub">Votos do 1º turno somando todos os cargos. Clique nos títulos para ordenar.</p>
+    <table id="tab">
+      <thead>
+        <tr>
+          <th data-col="0">UF</th>
+          <th data-col="1">Região</th>
+          <th data-col="2" class="num">Válidos</th>
+          <th data-col="3" class="num">Brancos</th>
+          <th data-col="4" class="num">Nulos</th>
+          <th data-col="5" class="num">Brancos + nulos</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><span class="uf">SP</span></td>
+        <td class="dim">Sudeste</td>
+        <td class="num">113.708.805</td>
+        <td class="num">9.048.968</td>
+        <td class="num">9.213.507</td>
+        <td class="num"><span class="barra" style="--w:92.3%"></span>13,8%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">MG</span></td>
+        <td class="dim">Sudeste</td>
+        <td class="num">54.724.816</td>
+        <td class="num">4.384.685</td>
+        <td class="num">4.026.334</td>
+        <td class="num"><span class="barra" style="--w:88.8%"></span>13,3%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">RJ</span></td>
+        <td class="dim">Sudeste</td>
+        <td class="num">42.300.800</td>
+        <td class="num">3.291.553</td>
+        <td class="num">3.636.982</td>
+        <td class="num"><span class="barra" style="--w:93.8%"></span>14,1%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">BA</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">39.182.047</td>
+        <td class="num">2.321.609</td>
+        <td class="num">3.727.239</td>
+        <td class="num"><span class="barra" style="--w:89.2%"></span>13,4%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">PR</span></td>
+        <td class="dim">Sul</td>
+        <td class="num">30.244.282</td>
+        <td class="num">2.166.409</td>
+        <td class="num">1.737.384</td>
+        <td class="num"><span class="barra" style="--w:76.2%"></span>11,4%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">RS</span></td>
+        <td class="dim">Sul</td>
+        <td class="num">29.745.061</td>
+        <td class="num">2.291.792</td>
+        <td class="num">1.450.267</td>
+        <td class="num"><span class="barra" style="--w:74.5%"></span>11,2%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">CE</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">26.103.889</td>
+        <td class="num">1.532.298</td>
+        <td class="num">1.891.423</td>
+        <td class="num"><span class="barra" style="--w:77.3%"></span>11,6%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">PE</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">25.101.994</td>
+        <td class="num">2.062.769</td>
+        <td class="num">2.361.417</td>
+        <td class="num"><span class="barra" style="--w:99.9%"></span>15,0%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">PA</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">23.199.997</td>
+        <td class="num">863.110</td>
+        <td class="num">1.250.643</td>
+        <td class="num"><span class="barra" style="--w:55.7%"></span>8,4%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">SC</span></td>
+        <td class="dim">Sul</td>
+        <td class="num">20.868.446</td>
+        <td class="num">1.264.391</td>
+        <td class="num">1.039.913</td>
+        <td class="num"><span class="barra" style="--w:66.3%"></span>9,9%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">MA</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">18.933.267</td>
+        <td class="num">901.004</td>
+        <td class="num">957.704</td>
+        <td class="num"><span class="barra" style="--w:59.6%"></span>8,9%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">GO</span></td>
+        <td class="dim">Centro-Oeste</td>
+        <td class="num">17.562.523</td>
+        <td class="num">1.196.616</td>
+        <td class="num">1.073.301</td>
+        <td class="num"><span class="barra" style="--w:76.3%"></span>11,4%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">PB</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">11.397.448</td>
+        <td class="num">865.286</td>
+        <td class="num">1.126.786</td>
+        <td class="num"><span class="barra" style="--w:99.2%"></span>14,9%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">ES</span></td>
+        <td class="dim">Sudeste</td>
+        <td class="num">10.432.816</td>
+        <td class="num">691.141</td>
+        <td class="num">619.103</td>
+        <td class="num"><span class="barra" style="--w:74.4%"></span>11,2%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">AM</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">10.217.180</td>
+        <td class="num">407.095</td>
+        <td class="num">537.080</td>
+        <td class="num"><span class="barra" style="--w:56.4%"></span>8,5%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">PI</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">9.919.750</td>
+        <td class="num">515.263</td>
+        <td class="num">761.917</td>
+        <td class="num"><span class="barra" style="--w:76.0%"></span>11,4%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">RN</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">9.506.376</td>
+        <td class="num">586.905</td>
+        <td class="num">745.289</td>
+        <td class="num"><span class="barra" style="--w:81.9%"></span>12,3%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">MT</span></td>
+        <td class="dim">Centro-Oeste</td>
+        <td class="num">9.263.622</td>
+        <td class="num">488.289</td>
+        <td class="num">496.679</td>
+        <td class="num"><span class="barra" style="--w:64.1%"></span>9,6%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">AL</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">8.598.294</td>
+        <td class="num">428.031</td>
+        <td class="num">652.775</td>
+        <td class="num"><span class="barra" style="--w:74.4%"></span>11,2%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">DF</span></td>
+        <td class="dim">Centro-Oeste</td>
+        <td class="num">8.270.684</td>
+        <td class="num">452.656</td>
+        <td class="num">366.265</td>
+        <td class="num"><span class="barra" style="--w:60.1%"></span>9,0%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">MS</span></td>
+        <td class="dim">Centro-Oeste</td>
+        <td class="num">6.812.516</td>
+        <td class="num">468.826</td>
+        <td class="num">413.703</td>
+        <td class="num"><span class="barra" style="--w:76.5%"></span>11,5%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">SE</span></td>
+        <td class="dim">Nordeste</td>
+        <td class="num">6.185.178</td>
+        <td class="num">423.240</td>
+        <td class="num">574.627</td>
+        <td class="num"><span class="barra" style="--w:92.6%"></span>13,9%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">RO</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">4.610.321</td>
+        <td class="num">170.185</td>
+        <td class="num">171.059</td>
+        <td class="num"><span class="barra" style="--w:45.9%"></span>6,9%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">TO</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">4.326.849</td>
+        <td class="num">173.672</td>
+        <td class="num">318.529</td>
+        <td class="num"><span class="barra" style="--w:68.1%"></span>10,2%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">AC</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">2.256.797</td>
+        <td class="num">68.720</td>
+        <td class="num">114.338</td>
+        <td class="num"><span class="barra" style="--w:50.0%"></span>7,5%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">AP</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">2.256.706</td>
+        <td class="num">40.431</td>
+        <td class="num">82.958</td>
+        <td class="num"><span class="barra" style="--w:34.6%"></span>5,2%</td>
+      </tr>
+      <tr>
+        <td><span class="uf">RR</span></td>
+        <td class="dim">Norte</td>
+        <td class="num">1.569.962</td>
+        <td class="num">37.248</td>
+        <td class="num">52.585</td>
+        <td class="num"><span class="barra" style="--w:36.1%"></span>5,4%</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="metodo">
+    <h2>Como os números foram feitos</h2>
+    <ul>
+      <li>Baixados os 27 arquivos <code>votacao_secao_2026_UF.zip</code> do portal de dados abertos do TSE
+          e descompactados em <code>csv/</code> (um CSV por estado, ~18 GB no total).</li>
+      <li>Os CSVs foram consolidados em uma única tabela (<code>dados/agregado.parquet</code>) com três recortes:
+          UF × cargo, município × cargo e candidato.</li>
+      <li><strong>Votos válidos</strong> = votos nominais + votos de legenda (exclui brancos e nulos).
+          <strong>Votos depositados</strong> = tudo que entrou na urna.</li>
+      <li>Para comparar estados usa-se o voto para <strong>governador</strong>: é a única escolha em que cada
+          eleitor deposita exatamente um voto, então serve como medida de eleitor válido.</li>
+      <li>Votos de legenda são identificados pelo código de candidato <code>-3</code>; brancos e nulos, por
+          <code>-1</code>.</li>
+      <li>Sem dados de abstenção nem de comparecimento (essas bases vêm em outro conjunto do TSE).</li>
+    </ul>
+    <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
+      gerado em 27/10/2026 17:01 · <code>analise.py</code> → <code>graficos.py</code> → <code>relatorio.py</code>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    TSE · Dados Abertos · Resultados 2026 · votação por seção eleitoral — tratamento local, sem vínculo com o Tribunal.
+  </div>
+</footer>
+
+<script>
+(function () {
+  const tab = document.getElementById('tab');
+  const corpo = tab.tBodies[0];
+  const linhas = [...corpo.rows];
+  const num = (s) => parseFloat(s.replace(/\./g, '').replace(',', '.')) || 0;
+  let dir = {};
+  tab.tHead.addEventListener('click', (e) => {
+    const th = e.target.closest('th'); if (!th) return;
+    const col = +th.dataset.col;
+    dir[col] = !dir[col];
+    const ordem = [...linhas].sort((a, b) => {
+      const ca = a.cells[col].dataset.v ?? a.cells[col].textContent.trim();
+      const cb = b.cells[col].dataset.v ?? b.cells[col].textContent.trim();
+      const va = col >= 2 ? num(ca) : ca;
+      const vb = col >= 2 ? num(cb) : cb;
+      return (va < vb ? -1 : va > vb ? 1 : 0) * (dir[col] ? 1 : -1);
+    });
+    ordem.forEach((tr) => corpo.appendChild(tr));
+  });
+  linhas.forEach((tr) => {
+    [...tr.cells].forEach((td, i) => {
+      if (i >= 2) td.dataset.v = String(num(td.textContent));
+    });
+  });
+})();
+</script>
+</body>
+</html>
