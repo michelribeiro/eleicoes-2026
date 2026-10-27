@@ -62,9 +62,11 @@ ELEICOES/
 - **2º turno presidencial**: Lula 51,79% (64.256.232) × Flávio 48,21% (59.826.041) — margem de 3,57 p.p.
   - Flávio liderou das **19h44** (13,9% das urnas) às **20h23** (47,3%); Lula virou e não perdeu mais
   - 90% das urnas apuradas às 21h01; a última urna chegou às 23h21
-- **Urnas que fecharam depois das 17h05** (registraram voto depois do horário legal): 57.409 urnas,
-  14.983.173 votos, **56,2% para Lula** — saldo de +1.860.855, ou 42% da margem final
-  - No 1º minuto de apuração Flávio liderava (50,99% × 49,01%); Lula virou às 17h01 e não perdeu mais
+- **Voto depois das 17h** (urnas que fecharam com fila, medidas pelo horário de fechamento):
+  - até **17h59** já estavam 490.836 urnas, com Lula **+4.200.908** — 95% da margem final
+  - depois das **18h**: 1.989.395 votos (1,6%), Lula 55% → acrescentaram **+200.259** (5% da margem)
+  - a votação acaba às **19h59**; depois só 2 urnas (20h e 23h04, 309 votos)
+  - no 1º minuto Flávio liderava (50,99% × 49,01%); Lula virou às 17h01 e não perdeu mais
 
 ## Como refazer
 

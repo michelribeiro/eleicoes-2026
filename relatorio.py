@@ -49,32 +49,39 @@ if parq.exists():
     con.execute(f"CREATE OR REPLACE VIEW u AS SELECT * FROM read_parquet('{parq.as_posix()}')")
     q = lambda sql: con.execute(sql).df()
 
-    faixas = q("""
+    fatias = q("""
         SELECT CASE
-                 WHEN fech_brt <  '2026-10-25 17:00:00' THEN 0
-                 WHEN fech_brt <  '2026-10-25 17:00:30' THEN 1
-                 WHEN fech_brt <  '2026-10-25 17:01:00' THEN 2
-                 WHEN fech_brt <  '2026-10-25 17:05:00' THEN 3
-                 WHEN fech_brt <  '2026-10-25 17:15:00' THEN 4
-                 WHEN fech_brt <  '2026-10-25 17:30:00' THEN 5
-                 WHEN fech_brt <  '2026-10-25 18:00:00' THEN 6
-                 WHEN fech_brt <  '2026-10-25 19:00:00' THEN 7
-                 ELSE 8 END faixa,
+                 WHEN fech_brt < '2026-10-25 17:05:00' THEN 1
+                 WHEN fech_brt < '2026-10-25 17:15:00' THEN 2
+                 WHEN fech_brt < '2026-10-25 17:30:00' THEN 3
+                 WHEN fech_brt < '2026-10-25 18:00:00' THEN 4
+                 WHEN fech_brt < '2026-10-25 19:00:00' THEN 5
+                 WHEN fech_brt < '2026-10-25 20:00:00' THEN 6
+                 ELSE 7 END faixa,
                COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
-        FROM u WHERE uf <> 'ZZ' GROUP BY 1 ORDER BY 1
+        FROM u WHERE uf <> 'ZZ' AND fech_brt >= '2026-10-25 17:00'
+        GROUP BY 1 ORDER BY 1
     """)
-    rotulos = ["antes das 17h", "17:00:00–17:00:29", "17:00:30–17:00:59", "17:01–17:04",
-               "17:05–17:14", "17:15–17:29", "17:30–17:59", "18:00–18:59", "19:00 ou depois"]
-    faixas["rotulo"] = [rotulos[i] for i in faixas.faixa]
-    faixas["lula_pct"] = faixas.lula / faixas.votos * 100
-    faixas["saldo"] = faixas.lula - faixas.flavio
+    fatias["rotulo"] = ["17h00–17h04", "17h05–17h14", "17h15–17h29", "17h30–17h59",
+                        "18h00–18h59", "19h00–19h59", "depois das 20h"][:len(fatias)]
+    fatias["lula_pct"] = fatias.lula / fatias.votos * 100
+    fatias["saldo"] = fatias.lula - fatias.flavio
+    for c in ("urnas", "votos", "lula", "flavio", "saldo"):
+        fatias[c + "_ac"] = fatias[c].cumsum()
+    fatias["lula_pct_ac"] = fatias.lula_ac / fatias.votos_ac * 100
 
-    tot = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio,
-                      MIN(fech_brt) FILTER (WHERE fech_brt >= '2026-10-25 17:00') ini,
-                      MAX(fech_brt) fim
+    # marcos acumulados (fim de cada janela)
+    marcos_idx = [(0, "até 17h04"), (1, "até 17h14"), (3, "até 17h59"),
+                  (4, "até 18h59"), (5, "até 19h59"), (len(fatias) - 1, "fim")]
+    marcos = [(rot, fatias.iloc[i]) for i, rot in marcos_idx if i < len(fatias)]
+
+    tot = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
                FROM u WHERE uf <> 'ZZ'""").iloc[0]
-    tarde = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
-                 FROM u WHERE uf <> 'ZZ' AND fech_brt >= '2026-10-25 17:05:00'""").iloc[0]
+    sobra = q("""SELECT COUNT(*) urnas, SUM(validos) votos FROM u
+                 WHERE uf <> 'ZZ' AND fech_brt >= '2026-10-25 20:00'""").iloc[0]
+    ate17h59 = fatias.iloc[3]
+    depois18 = q("""SELECT COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
+                    FROM u WHERE uf <> 'ZZ' AND fech_brt >= '2026-10-25 18:00'""").iloc[0]
     ct = q("""SELECT CASE WHEN rec_brt < '2026-10-25 20:23' THEN 'A' ELSE 'B' END chegada,
                      CASE WHEN fech_brt >= '2026-10-25 17:05:00' THEN 'tarde' ELSE 'hora' END fech,
                      COUNT(*) urnas, SUM(validos) votos, SUM(lula) lula, SUM(flavio) flavio
@@ -83,9 +90,13 @@ if parq.exists():
     ct["saldo"] = ct.lula - ct.flavio
     urnas = {
         "total_urnas": int(tot.urnas), "total_votos": int(tot.votos),
-        "ini": str(tot.ini)[11:16], "fim": str(tot.fim)[11:16],
-        "tarde": tarde, "faixas": faixas, "ct": ct,
-        "margem_tarde": int(tarde.lula - tarde.flavio),
+        "fatias": fatias, "marcos": marcos, "ct": ct,
+        "sobra_urnas": int(sobra.urnas), "sobra_votos": int(sobra.votos),
+        "ate17h59_urnas": int(ate17h59.urnas_ac),
+        "ate17h59_votos": int(ate17h59.votos_ac),
+        "ate17h59_margem": int(ate17h59.saldo_ac),
+        "depois18_urnas": int(depois18.urnas), "depois18_votos": int(depois18.votos),
+        "depois18_margem": int(depois18.lula - depois18.flavio),
         "margem_total": int(tot.lula - tot.flavio),
     }
 
@@ -476,18 +487,36 @@ html_index = f"""<!DOCTYPE html>
 # ---------------------------------------------------------------- página 2
 pagina_urnas = ""
 if urnas:
-    t = urnas["tarde"]
-    faixas_html = "\n".join(
-        f"""      <tr{' class="destaque"' if f.faixa >= 4 else ''}>
+    fatias_html = "\n".join(
+        f"""      <tr{' class="destaque"' if f.faixa >= 5 else ''}>
         <td><span class="uf">{f.rotulo}</span></td>
         <td class="num">{n(f.urnas)}</td>
-        <td class="num">{n(f.urnas / urnas['total_urnas'] * 100, 1)}%</td>
         <td class="num">{n(f.votos)}</td>
+        <td class="num">{n(f.lula)}</td>
+        <td class="num">{n(f.flavio)}</td>
         <td class="num">{n(f.lula_pct, 1)}%</td>
         <td class="num">{'+' if f.saldo > 0 else '−'}{n(abs(f.saldo))}</td>
       </tr>"""
-        for f in urnas["faixas"].itertuples()
+        for f in urnas["fatias"].itertuples()
     )
+
+    marcos = urnas["marcos"]
+    def linha(titulo, campo, fmt=lambda v: n(v), destaque=False):
+        cels = "".join(f'<td class="num">{fmt(m[campo])}</td>' for _, m in marcos)
+        cls = ' class="destaque"' if destaque else ""
+        return f"      <tr{cls}><td>{titulo}</td>{cels}</tr>"
+
+    acumulado_html = "\n".join([
+        "".join(f'<th class="num">{rot}</th>' for rot, _ in marcos),
+        linha("urnas fechadas", "urnas_ac"),
+        linha("votos válidos", "votos_ac"),
+        linha("Lula", "lula_ac"),
+        linha("Flávio", "flavio_ac"),
+        linha("% de Lula", "lula_pct_ac", lambda v: f"{n(v, 1)}%"),
+        linha("margem de Lula", "saldo_ac",
+              lambda v: f"{'+' if v > 0 else '−'}{n(abs(v))}", destaque=True),
+    ])
+
     ct = urnas["ct"]
     a_tarde = ct[(ct.chegada == "A") & (ct.fech == "tarde")].iloc[0]
     a_hora = ct[(ct.chegada == "A") & (ct.fech == "hora")].iloc[0]
@@ -496,14 +525,14 @@ if urnas:
     tot_a, tot_b = a_tarde.urnas + a_hora.urnas, b_tarde.urnas + b_hora.urnas
 
     cards_urnas = [
-        (n(int(t.urnas)), "urnas fecharam depois das 17h05",
-         f"{n(t.urnas / urnas['total_urnas'] * 100,1)}% das {n(urnas['total_urnas'])} urnas"),
-        (n(int(t.votos)), "votos válidos nessas urnas",
-         f"{n(t.votos / urnas['total_votos'] * 100,1)}% do total apurado"),
-        (f"{n(t.lula / t.votos * 100,1)}%", "foi para Lula",
-         f"Flávio {n(t.flavio / t.votos * 100,1)}%"),
-        (f"+{n(urnas['margem_tarde'])}", "de saldo para Lula",
-         f"{n(urnas['margem_tarde'] / urnas['margem_total'] * 100,0)}% da margem final"),
+        (n(urnas["ate17h59_urnas"]), "urnas fecharam até 17h59",
+         f"{n(urnas['ate17h59_urnas'] / urnas['total_urnas'] * 100,1)}% de todas as urnas"),
+        (f"+{n(urnas['ate17h59_margem'])}", "era a margem de Lula às 17h59",
+         f"{n(urnas['ate17h59_margem'] / urnas['margem_total'] * 100,0)}% da margem final"),
+        (n(urnas["depois18_votos"]), "votos depois das 18h",
+         f"{n(urnas['depois18_votos'] / urnas['total_votos'] * 100,1)}% do total apurado"),
+        (f"+{n(urnas['depois18_margem'])}", "foi o que esses votos mudaram",
+         f"{n(urnas['depois18_margem'] / urnas['margem_total'] * 100,0)}% da margem final"),
     ]
     cards_urnas_html = "".join(
         f'<div class="card-stat"><b>{a}</b><small>{b}</small><small class="dim">{c}</small></div>'
@@ -527,15 +556,15 @@ if urnas:
     <h1>Quando cada urna <em>fechou</em></h1>
     <p class="lead">
       O TSE não registra a hora de cada voto — voto é sigiloso. O que existe é a hora em que cada urna
-      <strong>fechou</strong>, no Boletim de Urna. É o mais perto de "voto depois das 17h": só urna que
-      fechou com fila recebeu voto depois do horário legal. Ordenando as {n(urnas['total_urnas'])} urnas
-      por esse horário, dá para ver quem estava na frente a cada minuto — e quando a eleição virou.
+      <strong>fechou</strong>, no Boletim de Urna, e é isso que está usado aqui: as urnas entram na conta
+      pelo horário de fechamento, não pela hora em que o arquivo chegou ao TSE. Na prática a votação
+      termina às <strong>19h59</strong> — depois disso só 2 urnas fecharam, com 309 votos.
     </p>
     <div class="meta">
       <span>2º turno · 25/10/2026</span>
       <span>{n(urnas['total_urnas'])} urnas</span>
       <span>{n(urnas['total_votos'])} votos válidos</span>
-      <span>das {urnas['ini']} às {urnas['fim']} (Brasília)</span>
+      <span>17h00 às 19h59 (Brasília)</span>
       <span>fonte: Boletim de Urna</span>
     </div>
   </div>
@@ -552,8 +581,9 @@ if urnas:
       <figcaption>
         <h2>Quem estava na frente, urna por urna</h2>
         <p>
-          À esquerda, a apuração inteira: as urnas entram na conta pelo horário de fechamento, das 17h
-          às {urnas['fim']}. À direita, o zoom dos primeiros seis minutos, onde 96% das urnas fecham.
+          À esquerda, a votação inteira: as urnas entram na conta pelo horário de fechamento, das 17h
+          às 19h59 (as duas últimas, já fora do gráfico, fecharam às 20h e às 23h04).
+          À direita, o zoom dos primeiros seis minutos, onde 96% das urnas fecham.
           No primeiro minuto Flávio liderava com 50,99% (as urnas que fecham mais rápido são as menores,
           do Sul e do Sudeste); às 17h01 Lula passou à frente com 50,20% e a partir dali a diferença só
           cresceu, até 51,79% × 48,21%. Abaixo, o ritmo: 89% das urnas já tinham fechado às 17h04.
@@ -563,26 +593,54 @@ if urnas:
   </section>
 
   <section class="tabela">
-    <h2>As urnas por horário de fechamento</h2>
+    <h2>O que entrou em cada fatia de horário</h2>
     <p class="sub">
-      Cada linha é um grupo de urnas que fechou naquele intervalo, com os votos que estavam dentro.
-      As linhas destacadas são as que registraram voto depois das 17h05 — 57 mil urnas, 12% dos votos.
+      Cada linha é o conjunto de urnas que fechou naquele intervalo — os votos que estavam dentro delas.
+      As duas linhas destacadas são as urnas com fila, que fecharam depois das 18h.
     </p>
     <table>
       <thead>
         <tr>
           <th>Fechou</th>
           <th class="num">Urnas</th>
-          <th class="num">% das urnas</th>
           <th class="num">Votos válidos</th>
           <th class="num">Lula</th>
+          <th class="num">Flávio</th>
+          <th class="num">Lula %</th>
           <th class="num">Saldo Lula</th>
         </tr>
       </thead>
       <tbody>
-{faixas_html}
+{fatias_html}
       </tbody>
     </table>
+  </section>
+
+  <section class="tabela">
+    <h2>A conta acumulada, hora por hora</h2>
+    <p class="sub">
+      Os mesmos números somados até o fim de cada janela. É a leitura que responde "e se a apuração
+      tivesse parado aqui?": às 17h59 Lula já tinha {n(urnas['ate17h59_margem'])} de margem — 95% do
+      resultado final. As duas horas seguintes, com as urnas de fila, acrescentaram
+      {n(urnas['depois18_margem'])}.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+{acumulado_html.splitlines()[0]}
+        </tr>
+      </thead>
+      <tbody>
+{chr(10).join(acumulado_html.splitlines()[1:])}
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:22px">
+      Os {n(urnas['sobra_votos'])} votos que faltam para o total do país vieram de
+      {n(urnas['sobra_urnas'])} urnas que fecharam fora da janela (20h e 23h04) e de 3 urnas do
+      sertão de Pernambuco com relógio adiantado. O exterior (1.310 urnas) fica fora do corte de horário,
+      porque cada consulado segue o fuso local.
+    </p>
   </section>
 
   <section class="tabela">
@@ -657,8 +715,9 @@ if urnas:
       <li>Os totais conferem com a votação por seção: {n(urnas['total_votos'])} votos válidos,
           os mesmos 64.256.232 de Lula e 59.826.041 de Flávio (o exterior fica de fora do corte de horário).</li>
       <li><strong>O que este dado não diz:</strong> quantos votos individuais foram digitados depois das 17h.
-          A urna registra o fechamento da seção, não o horário de cada voto. Os {n(int(t.votos))} votos
-          acima são um teto — vêm de urnas que estavam abertas depois das 17h05.</li>
+          A urna registra o fechamento da seção, não o horário de cada voto. Os votos das urnas que
+          fecharam depois das 17h05 são um teto — 14,98 milhões, 12% do total — e a fatia que
+          efetivamente entrou depois das 18h é de {n(urnas['depois18_votos'])} votos.</li>
     </ul>
     <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
       <code>urnas.py</code> → <code>dados/urnas_fechamento_2026.parquet</code> → <code>graficos/14_urnas_fechamento.png</code>

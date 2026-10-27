@@ -168,7 +168,8 @@ def desenhar(serie):
              fontsize=20, weight="demi", color=INK, va="top")
     fig.text(0.03, 1 - 0.84 / H,
              "Percentual dos votos válidos para presidente somando as urnas pela hora em que "
-             "FECHARAM · 2º turno, 25/10/2026 · horário de Brasília · sem o exterior",
+             "FECHARAM · 2º turno, 25/10/2026 · horário de Brasília · sem o exterior\n"
+             "A votação termina às 19h59: depois disso só 2 urnas fecharam (20h e 23h04), com 309 votos",
              fontsize=10.2, color=INK_SOFT, va="top")
     fig.text(0.03, 0.14 / H,
              "Fonte: TSE · Dados Abertos · Boletim de Urna (DT_ENCERRAMENTO) · "
@@ -180,7 +181,7 @@ def desenhar(serie):
     az = fig.add_axes([0.525, 0.30, 0.40, 0.46], sharey=ax)
     ax_ritmo = fig.add_axes([0.072, 0.165, 0.355, 0.075], sharex=ax)
 
-    x0, x1 = pd.Timestamp("2026-10-25 17:00"), pd.Timestamp("2026-10-25 23:20")
+    x0, x1 = pd.Timestamp("2026-10-25 17:00"), pd.Timestamp("2026-10-25 20:12")
     z1 = pd.Timestamp("2026-10-25 17:06")
 
     for a in (ax, az):
@@ -203,20 +204,20 @@ def desenhar(serie):
 
     ax.set_xlim(x0, x1)
     ax.set_ylabel("% dos votos válidos já apurados", fontsize=9)
-    ax.set_xticks([pd.Timestamp(f"2026-10-25 {h}:00") for h in range(17, 24)])
+    ax.set_xticks([pd.Timestamp(f"2026-10-25 {h}:00") for h in range(17, 21)])
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Hh"))
     ax.tick_params(labelbottom=False)
-    ax.set_title("a apuração inteira · 17h a 23h04", fontsize=10, color=INK_SOFT,
+    ax.set_title("a votação inteira · 17h a 19h59", fontsize=10, color=INK_SOFT,
                  loc="left", pad=8)
     ax.annotate("as duas linhas se cruzam\nno primeiro minuto",
                 xy=(pd.Timestamp("2026-10-25 17:02"), 50.4),
-                xytext=(pd.Timestamp("2026-10-25 18:10"), 49.1),
+                xytext=(pd.Timestamp("2026-10-25 17:45"), 49.2),
                 fontsize=8.8, color=INK, linespacing=1.4,
                 arrowprops=dict(arrowstyle="-", color="#D8CFC0", lw=1))
-    ax.text(pd.Timestamp("2026-10-25 22:50"), s.pct_lula.iloc[-1] + 0.28,
+    ax.text(pd.Timestamp("2026-10-25 19:55"), s.pct_lula.iloc[-1] + 0.28,
             f"Lula {n(s.pct_lula.iloc[-1], 2)}%", fontsize=9.4, weight="demi", color=RUST,
             ha="right")
-    ax.text(pd.Timestamp("2026-10-25 22:50"), s.pct_flavio.iloc[-1] - 0.38,
+    ax.text(pd.Timestamp("2026-10-25 19:55"), s.pct_flavio.iloc[-1] - 0.38,
             f"Flávio {n(s.pct_flavio.iloc[-1], 2)}%", fontsize=9.4, weight="demi", color=INDIGO,
             ha="right")
 

@@ -162,22 +162,22 @@
     <h1>Quando cada urna <em>fechou</em></h1>
     <p class="lead">
       O TSE não registra a hora de cada voto — voto é sigiloso. O que existe é a hora em que cada urna
-      <strong>fechou</strong>, no Boletim de Urna. É o mais perto de "voto depois das 17h": só urna que
-      fechou com fila recebeu voto depois do horário legal. Ordenando as 497.897 urnas
-      por esse horário, dá para ver quem estava na frente a cada minuto — e quando a eleição virou.
+      <strong>fechou</strong>, no Boletim de Urna, e é isso que está usado aqui: as urnas entram na conta
+      pelo horário de fechamento, não pela hora em que o arquivo chegou ao TSE. Na prática a votação
+      termina às <strong>19h59</strong> — depois disso só 2 urnas fecharam, com 309 votos.
     </p>
     <div class="meta">
       <span>2º turno · 25/10/2026</span>
       <span>497.897 urnas</span>
       <span>123.710.622 votos válidos</span>
-      <span>das 17:00 às 23:04 (Brasília)</span>
+      <span>17h00 às 19h59 (Brasília)</span>
       <span>fonte: Boletim de Urna</span>
     </div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="cards"><div class="card-stat"><b>57.409</b><small>urnas fecharam depois das 17h05</small><small class="dim">11,5% das 497.897 urnas</small></div><div class="card-stat"><b>14.983.173</b><small>votos válidos nessas urnas</small><small class="dim">12,1% do total apurado</small></div><div class="card-stat"><b>56,2%</b><small>foi para Lula</small><small class="dim">Flávio 43,8%</small></div><div class="card-stat"><b>+1.860.855</b><small>de saldo para Lula</small><small class="dim">42% da margem final</small></div></div>
+  <div class="cards"><div class="card-stat"><b>490.836</b><small>urnas fecharam até 17h59</small><small class="dim">98,6% de todas as urnas</small></div><div class="card-stat"><b>+4.200.908</b><small>era a margem de Lula às 17h59</small><small class="dim">95% da margem final</small></div><div class="card-stat"><b>1.989.395</b><small>votos depois das 18h</small><small class="dim">1,6% do total apurado</small></div><div class="card-stat"><b>+200.259</b><small>foi o que esses votos mudaram</small><small class="dim">5% da margem final</small></div></div>
 </div>
 
 <main class="wrap">
@@ -187,8 +187,9 @@
       <figcaption>
         <h2>Quem estava na frente, urna por urna</h2>
         <p>
-          À esquerda, a apuração inteira: as urnas entram na conta pelo horário de fechamento, das 17h
-          às 23:04. À direita, o zoom dos primeiros seis minutos, onde 96% das urnas fecham.
+          À esquerda, a votação inteira: as urnas entram na conta pelo horário de fechamento, das 17h
+          às 19h59 (as duas últimas, já fora do gráfico, fecharam às 20h e às 23h04).
+          À direita, o zoom dos primeiros seis minutos, onde 96% das urnas fecham.
           No primeiro minuto Flávio liderava com 50,99% (as urnas que fecham mais rápido são as menores,
           do Sul e do Sudeste); às 17h01 Lula passou à frente com 50,20% e a partir dali a diferença só
           cresceu, até 51,79% × 48,21%. Abaixo, o ritmo: 89% das urnas já tinham fechado às 17h04.
@@ -198,97 +199,121 @@
   </section>
 
   <section class="tabela">
-    <h2>As urnas por horário de fechamento</h2>
+    <h2>O que entrou em cada fatia de horário</h2>
     <p class="sub">
-      Cada linha é um grupo de urnas que fechou naquele intervalo, com os votos que estavam dentro.
-      As linhas destacadas são as que registraram voto depois das 17h05 — 57 mil urnas, 12% dos votos.
+      Cada linha é o conjunto de urnas que fechou naquele intervalo — os votos que estavam dentro delas.
+      As duas linhas destacadas são as urnas com fila, que fecharam depois das 18h.
     </p>
     <table>
       <thead>
         <tr>
           <th>Fechou</th>
           <th class="num">Urnas</th>
-          <th class="num">% das urnas</th>
           <th class="num">Votos válidos</th>
           <th class="num">Lula</th>
+          <th class="num">Flávio</th>
+          <th class="num">Lula %</th>
           <th class="num">Saldo Lula</th>
         </tr>
       </thead>
       <tbody>
       <tr>
-        <td><span class="uf">antes das 17h</span></td>
-        <td class="num">3</td>
-        <td class="num">0,0%</td>
-        <td class="num">557</td>
-        <td class="num">82,9%</td>
-        <td class="num">+367</td>
+        <td><span class="uf">17h00–17h04</span></td>
+        <td class="num">440.485</td>
+        <td class="num">108.726.892</td>
+        <td class="num">55.633.602</td>
+        <td class="num">53.093.290</td>
+        <td class="num">51,2%</td>
+        <td class="num">+2.540.312</td>
       </tr>
       <tr>
-        <td><span class="uf">17:00:00–17:00:29</span></td>
-        <td class="num">17.758</td>
-        <td class="num">3,6%</td>
-        <td class="num">4.395.784</td>
-        <td class="num">46,5%</td>
-        <td class="num">−310.430</td>
-      </tr>
-      <tr>
-        <td><span class="uf">17:00:30–17:00:59</span></td>
-        <td class="num">107.876</td>
-        <td class="num">21,7%</td>
-        <td class="num">26.216.036</td>
-        <td class="num">49,4%</td>
-        <td class="num">−295.240</td>
-      </tr>
-      <tr>
-        <td><span class="uf">17:01–17:04</span></td>
-        <td class="num">314.851</td>
-        <td class="num">63,2%</td>
-        <td class="num">78.115.072</td>
-        <td class="num">52,0%</td>
-        <td class="num">+3.145.982</td>
-      </tr>
-      <tr class="destaque">
-        <td><span class="uf">17:05–17:14</span></td>
+        <td><span class="uf">17h05–17h14</span></td>
         <td class="num">48.343</td>
-        <td class="num">9,7%</td>
         <td class="num">12.480.005</td>
+        <td class="num">7.027.272</td>
+        <td class="num">5.452.733</td>
         <td class="num">56,3%</td>
         <td class="num">+1.574.539</td>
       </tr>
-      <tr class="destaque">
-        <td><span class="uf">17:15–17:29</span></td>
+      <tr>
+        <td><span class="uf">17h15–17h29</span></td>
         <td class="num">1.482</td>
-        <td class="num">0,3%</td>
         <td class="num">378.559</td>
+        <td class="num">220.460</td>
+        <td class="num">158.099</td>
         <td class="num">58,2%</td>
         <td class="num">+62.361</td>
       </tr>
-      <tr class="destaque">
-        <td><span class="uf">17:30–17:59</span></td>
+      <tr>
+        <td><span class="uf">17h30–17h59</span></td>
         <td class="num">526</td>
-        <td class="num">0,1%</td>
         <td class="num">135.214</td>
+        <td class="num">79.455</td>
+        <td class="num">55.759</td>
         <td class="num">58,8%</td>
         <td class="num">+23.696</td>
       </tr>
       <tr class="destaque">
-        <td><span class="uf">18:00–18:59</span></td>
+        <td><span class="uf">18h00–18h59</span></td>
         <td class="num">731</td>
-        <td class="num">0,1%</td>
         <td class="num">201.266</td>
+        <td class="num">109.720</td>
+        <td class="num">91.546</td>
         <td class="num">54,5%</td>
         <td class="num">+18.174</td>
       </tr>
       <tr class="destaque">
-        <td><span class="uf">19:00 ou depois</span></td>
-        <td class="num">6.327</td>
-        <td class="num">1,3%</td>
-        <td class="num">1.788.129</td>
+        <td><span class="uf">19h00–19h59</span></td>
+        <td class="num">6.325</td>
+        <td class="num">1.787.820</td>
+        <td class="num">984.974</td>
+        <td class="num">802.846</td>
         <td class="num">55,1%</td>
-        <td class="num">+182.085</td>
+        <td class="num">+182.128</td>
+      </tr>
+      <tr class="destaque">
+        <td><span class="uf">depois das 20h</span></td>
+        <td class="num">2</td>
+        <td class="num">309</td>
+        <td class="num">133</td>
+        <td class="num">176</td>
+        <td class="num">43,0%</td>
+        <td class="num">−43</td>
       </tr>
       </tbody>
     </table>
+  </section>
+
+  <section class="tabela">
+    <h2>A conta acumulada, hora por hora</h2>
+    <p class="sub">
+      Os mesmos números somados até o fim de cada janela. É a leitura que responde "e se a apuração
+      tivesse parado aqui?": às 17h59 Lula já tinha 4.200.908 de margem — 95% do
+      resultado final. As duas horas seguintes, com as urnas de fila, acrescentaram
+      200.259.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+<th class="num">até 17h04</th><th class="num">até 17h14</th><th class="num">até 17h59</th><th class="num">até 18h59</th><th class="num">até 19h59</th><th class="num">fim</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr><td>urnas fechadas</td><td class="num">440.485</td><td class="num">488.828</td><td class="num">490.836</td><td class="num">491.567</td><td class="num">497.892</td><td class="num">497.894</td></tr>
+      <tr><td>votos válidos</td><td class="num">108.726.892</td><td class="num">121.206.897</td><td class="num">121.720.670</td><td class="num">121.921.936</td><td class="num">123.709.756</td><td class="num">123.710.065</td></tr>
+      <tr><td>Lula</td><td class="num">55.633.602</td><td class="num">62.660.874</td><td class="num">62.960.789</td><td class="num">63.070.509</td><td class="num">64.055.483</td><td class="num">64.055.616</td></tr>
+      <tr><td>Flávio</td><td class="num">53.093.290</td><td class="num">58.546.023</td><td class="num">58.759.881</td><td class="num">58.851.427</td><td class="num">59.654.273</td><td class="num">59.654.449</td></tr>
+      <tr><td>% de Lula</td><td class="num">51,2%</td><td class="num">51,7%</td><td class="num">51,7%</td><td class="num">51,7%</td><td class="num">51,8%</td><td class="num">51,8%</td></tr>
+      <tr class="destaque"><td>margem de Lula</td><td class="num">+2.540.312</td><td class="num">+4.114.851</td><td class="num">+4.200.908</td><td class="num">+4.219.082</td><td class="num">+4.401.210</td><td class="num">+4.401.167</td></tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:22px">
+      Os 309 votos que faltam para o total do país vieram de
+      2 urnas que fecharam fora da janela (20h e 23h04) e de 3 urnas do
+      sertão de Pernambuco com relógio adiantado. O exterior (1.310 urnas) fica fora do corte de horário,
+      porque cada consulado segue o fuso local.
+    </p>
   </section>
 
   <section class="tabela">
@@ -363,8 +388,9 @@
       <li>Os totais conferem com a votação por seção: 123.710.622 votos válidos,
           os mesmos 64.256.232 de Lula e 59.826.041 de Flávio (o exterior fica de fora do corte de horário).</li>
       <li><strong>O que este dado não diz:</strong> quantos votos individuais foram digitados depois das 17h.
-          A urna registra o fechamento da seção, não o horário de cada voto. Os 14.983.173 votos
-          acima são um teto — vêm de urnas que estavam abertas depois das 17h05.</li>
+          A urna registra o fechamento da seção, não o horário de cada voto. Os votos das urnas que
+          fecharam depois das 17h05 são um teto — 14,98 milhões, 12% do total — e a fatia que
+          efetivamente entrou depois das 18h é de 1.989.395 votos.</li>
     </ul>
     <p style="color:#9AA1AB;font-family:var(--mono);font-size:11.5px;margin-top:22px">
       <code>urnas.py</code> → <code>dados/urnas_fechamento_2026.parquet</code> → <code>graficos/14_urnas_fechamento.png</code>
