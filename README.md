@@ -3,7 +3,8 @@
 Dados abertos do TSE (votação por seção eleitoral, Eleições Gerais 2026), baixados,
 descompactados, consolidados e transformados em gráficos.
 
-**Abra o relatório:** [`index.html`](index.html) (abra no navegador — os gráficos já estão prontos em `graficos/`).
+**Ver online:** https://michelribeiro.github.io/eleicoes-2026/
+**Local:** abra [`index.html`](index.html) no navegador (os gráficos já estão prontos em `graficos/`).
 
 ## O que tem aqui
 
