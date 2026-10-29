@@ -1,38 +1,28 @@
 # ELEIÇÕES 2026 — votos por região
 
-Dados abertos do TSE (votação por seção eleitoral, Eleições Gerais 2026), baixados,
-descompactados, consolidados e transformados em gráficos.
+Dados abertos do TSE (votação por seção eleitoral, Eleições Gerais 2026), consolidados e
+transformados em gráficos.
 
-**Ver online:** https://michelribeiro.github.io/eleicoes-2026/ · segunda página: [urnas.html](https://michelribeiro.github.io/eleicoes-2026/urnas.html)
-**Local:** abra [`index.html`](index.html) no navegador (os gráficos já estão prontos em `graficos/`).
+**Ver online:** https://michelribeiro.github.io/eleicoes-2026/ ·
+segunda página: [urnas.html](https://michelribeiro.github.io/eleicoes-2026/urnas.html)
 
-## O que tem aqui
+## O que está publicado
 
 ```
-ELEICOES/
 ├── index.html                  votos por região: 13 gráficos, tabela por UF e método
 ├── urnas.html                  quando cada urna fechou: gráfico 14 e tabelas
-├── zips/                       27 arquivos originais do TSE (votacao_secao_2026_UF.zip) — 2,6 GB
-├── csv/                        27 CSVs descompactados (um por UF) — 18 GB
-├── graficos/                   12 gráficos em PNG (200 dpi, 2200 px de largura)
-├── dados/
-│   ├── agregado.parquet        tabela consolidada (UF×cargo, município×cargo, candidato)
-│   ├── apuracao_presidente_2026.csv   apuração do 2º turno presidencial, minuto a minuto
-│   ├── urnas_fechamento_2026.parquet  1 linha por urna: fechamento, chegada ao TSE e votos
-│   ├── urnas_series_fechamento.csv    série cumulativa por horário de fechamento
-│   ├── resumo.json             números usados no relatório
-│   ├── votos_por_uf_e_cargo.csv
-│   ├── votos_por_municipio.csv
-│   ├── votos_por_candidato.csv
-│   └── br_ufs.geojson          malha das UFs (IBGE), usada nos mapas
+├── graficos/                   14 gráficos em PNG (200 dpi, 2200 px de largura)
 ├── apuracao.py                 apuração pela hora de CHEGADA ao TSE + gráfico 13
 ├── urnas.py                    apuração pela hora de FECHAMENTO da urna + gráfico 14
-├── analise.py                  CSVs → dados/agregado.parquet
-├── graficos.py                 agregado → graficos/*.png + dados/resumo.json
+├── analise.py                  CSVs do TSE → parquet consolidado
+├── graficos.py                 agregado → graficos/*.png + resumo.json
 ├── relatorio.py                resumo.json → index.html
-├── exportar.py                 agregado → CSVs de apoio
-└── .venv/                      ambiente Python (pandas, duckdb, matplotlib, pyarrow)
+└── exportar.py                 agregado → CSVs de apoio
 ```
+
+O site é 100% estático: HTML + PNGs, sem CDN, sem JS de terceiros. Os dados brutos
+(27 ZIPs do TSE, 2,6 GB; 27 CSVs, 18 GB) e as tabelas intermediárias **não são versionados** —
+são regerados pelos scripts abaixo.
 
 ## Gráficos
 
@@ -71,9 +61,10 @@ ELEICOES/
 ## Como refazer
 
 ```bash
-cd ELEICOES
-./.venv/bin/python analise.py     # ~70 s, lê os 18 GB de CSV e gera o parquet
-./.venv/bin/python graficos.py    # gera os PNGs e o resumo.json
+python -m venv .venv && ./.venv/bin/pip install pandas duckdb matplotlib pyarrow
+# baixar e descompactar os 27 votacao_secao_2026_<UF>.zip do TSE em csv/
+./.venv/bin/python analise.py     # ~70 s, lê os 18 GB de CSV e gera dados/agregado.parquet
+./.venv/bin/python graficos.py    # gera os PNGs e dados/resumo.json
 ./.venv/bin/python relatorio.py   # monta o index.html
 ./.venv/bin/python exportar.py    # (opcional) CSVs de apoio
 ./.venv/bin/python apuracao.py    # apuração pela chegada ao TSE + gráfico 13
@@ -84,20 +75,14 @@ cd ELEICOES
 baixa o **Detalhe da apuração por seção eleitoral**, que traz o horário de recebimento de cada urna
 (`DT_RECEBIMENTO_BU_HOR_TSE`). Os dois são cruzados por UF + município + zona + seção — sem essa
 coluna não existe série temporal: a votação por seção só guarda o resultado final.
-Os ~2,9 GB ficam em `.cache/` (fora do git) e podem ser apagados depois. Para não baixar de novo:
-
-```bash
-TSE_CACHE=/caminho/do/cache ./.venv/bin/python apuracao.py --forcar
-TSE_CACHE=/caminho/do/cache ./.venv/bin/python urnas.py --forcar
-```
+O cache (~2,9 GB) fica em `.cache/` e pode ser apontado com `TSE_CACHE=/caminho`.
 
 `urnas.py` usa o dataset **"Resultados — 2026 — Boletim de Urna"** (28 arquivos `bweb_2t_UF_*.zip`),
 que traz `DT_ENCERRAMENTO`, `DT_ABERTURA` e `DT_BU_RECEBIDO` de cada urna — é o que permite medir
 "voto depois das 17h" (a urna que fechou com fila). Os horários são locais; o fuso de cada município
-é inferido do horário legal de fechamento. O CSV extraído (~1 GB) é apagado no fim; ficam só os zips e
-o parquet de 1 linha por urna.
+é inferido do horário legal de fechamento.
 
-Para baixar de novo, os arquivos estão em
+Origem dos dados:
 `https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2026_<UF>.zip`
 (UFs: AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC SE SP TO).
 
